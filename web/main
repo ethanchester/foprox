@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#080b1d">
+ <title>Foprox | Game Hub</title>
+ <style>
+   :root{--bg:#080b1d;--panel:#141937d9;--text:#f7f8ff;--muted:#aeb5d8;--purple:#9d7bff;--cyan:#54d9ff;--pink:#ff6fbd}
+   *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;color:var(--text);font-family:Inter,system-ui,sans-serif;background:var(--bg);overflow-x:hidden}
+   body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 15% 10%,#302061 0,transparent 34%),radial-gradient(circle at 85% 25%,#123d60 0,transparent 30%),linear-gradient(145deg,#080b1d 20%,#101735 100%)}
+   body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.18;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(#000,transparent 75%)}
+   .site-header,main{width:min(1160px,calc(100% - 36px));margin:auto}.site-header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.35rem}.brand-mark{width:38px;height:38px;display:grid;place-items:center;color:#11152f;border-radius:13px;transform:rotate(-8deg);background:linear-gradient(135deg,var(--cyan),var(--purple) 55%,var(--pink));box-shadow:0 8px 25px #7f70ff55}.header-actions{display:flex;align-items:center;gap:20px}nav a{color:var(--muted);text-decoration:none;margin-left:25px;font-size:.92rem}nav a:hover{color:#fff}.fullscreen-button{border:1px solid #ffffff25;border-radius:12px;padding:10px 14px;color:var(--text);cursor:pointer;font:700 .82rem system-ui,sans-serif;background:#ffffff0d;transition:background .2s,border-color .2s}.fullscreen-button:hover{background:#9d7bff33;border-color:var(--purple)}body:fullscreen{background:var(--bg)}body:fullscreen:before{position:fixed}.fullscreen-button:focus-visible{outline:3px solid #54d9ff88;outline-offset:3px}
+   .hero{min-height:400px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:55px 0 75px}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:800}h1{max-width:650px;margin:13px 0 18px;font-size:clamp(3rem,8vw,6.7rem);line-height:.9;letter-spacing:-.085em}h1 span{color:var(--purple);text-shadow:0 0 35px #9d7bff66}.hero p{max-width:550px;color:var(--muted);line-height:1.7;font-size:1.05rem}.hero-art{min-height:290px;position:relative;display:grid;place-items:center}.orb{width:220px;height:220px;border-radius:45% 55% 60% 40%;transform:rotate(25deg);background:linear-gradient(135deg,#44ddff,#695cff 55%,#ff65bd);box-shadow:0 0 80px #756dff99;animation:float 5s ease-in-out infinite}.orb:after{content:"▶";display:grid;place-items:center;width:100%;height:100%;transform:rotate(-25deg);font-size:5rem;color:#fff9}.pixel{position:absolute;width:28px;height:28px;background:var(--pink);box-shadow:100px 120px 0 var(--cyan),-115px 95px 0 var(--purple);animation:float 4s ease-in-out infinite reverse}@keyframes float{50%{transform:translateY(-16px) rotate(32deg)}}
+   .library-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}h2{margin:0;font-size:2rem;letter-spacing:-.05em}.library-heading p{color:var(--muted);margin:7px 0 0}.search-wrap{position:relative;width:min(100%,310px)}.search-wrap span{position:absolute;left:15px;top:9px;color:var(--muted);font-size:1.3rem}#gameSearch{width:100%;padding:12px 15px 12px 42px;border:1px solid #ffffff20;border-radius:14px;outline:0;color:#fff;background:#ffffff0d;font:inherit}#gameSearch:focus{border-color:var(--purple);box-shadow:0 0 0 3px #9d7bff22}
+   .game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:70px}.game-card{overflow:hidden;border:1px solid #ffffff18;border-radius:24px;background:var(--panel);box-shadow:0 18px 45px #0004;backdrop-filter:blur(14px);transition:transform .25s,border-color .25s}.game-card:hover{transform:translateY(-7px);border-color:#9d7bff99}.game-card[hidden]{display:none}.game-art{height:205px;position:relative;overflow:hidden;display:flex;align-items:center;padding:25px}.game-art:before,.game-art:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}.ovo-art{background:linear-gradient(135deg,#271456,#db438d)}.ovo-art:before{width:260px;height:260px;right:-45px;top:-90px;background:#ffb4d433}.ovo-art:after{width:110px;height:110px;left:54px;bottom:-54px;background:#7b5bff}.mc-art{background:linear-gradient(135deg,#163e57,#6c9d5c)}.mc-art:before{width:190px;height:190px;right:-30px;bottom:-80px;background:#bde77b99}.mc-art:after{width:80px;height:80px;left:30px;top:-35px;background:#a8e4ff66}.gd-art{background:linear-gradient(135deg,#081b55,#087ed1 55%,#31d6ff)}.gd-art:before{width:250px;height:250px;right:-55px;top:-95px;background:#8deaff55}.gd-art:after{width:115px;height:115px;left:45px;bottom:-55px;background:#1741bb}.paper-art{background:linear-gradient(135deg,#123c2b,#2eb872 55%,#b8ef65)}.paper-art:before{width:230px;height:230px;right:-50px;top:-85px;background:#d7ff9a55}.paper-art:after{width:105px;height:105px;left:45px;bottom:-50px;background:#0e7655}.cookie-art{background:linear-gradient(135deg,#4b200d,#b76525 55%,#f4c15d)}.cookie-art:before{width:230px;height:230px;right:-50px;top:-85px;background:#ffe0a055}.cookie-art:after{width:105px;height:105px;left:45px;bottom:-50px;background:#7b3215}.devil-art{background:linear-gradient(135deg,#180000,#8f1414 55%,#ff5b35)}.devil-art:before{width:240px;height:240px;right:-45px;top:-95px;background:#ffcf6a44}.devil-art:after{width:110px;height:110px;left:45px;bottom:-55px;background:#3b0000}.escape-art{background:linear-gradient(135deg,#071b2d,#087c9f 55%,#ffd34e)}.escape-art:before{width:240px;height:240px;right:-45px;top:-95px;background:#8cecff55}.escape-art:after{width:115px;height:115px;left:45px;bottom:-55px;background:#063c69}    .spacebar-art{background:linear-gradient(135deg,#302817,#8a7d5a 55%,#f9fbb2)}.spacebar-art:before{width:240px;height:240px;right:-45px;top:-95px;background:#fff8c855}.spacebar-art:after{width:110px;height:110px;left:45px;bottom:-55px;background:#483d21}.sound-art{background:linear-gradient(135deg,#24104f,#9d4edd 55%,#ff6fbd)}.sound-art:before{width:240px;height:240px;right:-45px;top:-95px;background:#ffffff33}.sound-art:after{width:110px;height:110px;left:45px;bottom:-55px;background:#3b176f}.snow-art{background:linear-gradient(135deg,#102b55,#48b9e8 55%,#f4fbff)}.snow-art:before{width:250px;height:250px;right:-55px;top:-95px;background:#ffffff66}.snow-art:after{width:115px;height:115px;left:45px;bottom:-55px;background:#22659a}.art-label{position:relative;z-index:1;font-size:clamp(2.5rem,5vw,4.8rem);font-weight:950;letter-spacing:-.1em;text-shadow:4px 5px 0 #0005;transform:rotate(-5deg)}.gd-art .art-label{color:#fff;text-shadow:4px 5px 0 #062263,0 0 20px #8deaff}.mc-art .art-label{font-size:clamp(1.9rem,4vw,3.8rem);letter-spacing:-.06em;transform:rotate(3deg)}.card-content{padding:20px 21px 21px}.card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}h3{margin:0;font-size:1.35rem}.badge{color:#bdf8d1;background:#3ad77a20;border:1px solid #3ad77a55;border-radius:99px;padding:5px 9px;font-size:.7rem;font-weight:800;text-transform:uppercase}.card-content p{min-height:48px;color:var(--muted);line-height:1.5;font-size:.9rem}.play-button{width:100%;border:0;border-radius:12px;padding:13px;color:#fff;cursor:pointer;font:inherit;font-weight:800;background:linear-gradient(100deg,#765cf4,#c05bdb);transition:filter .2s,transform .2s}.play-button:hover{filter:brightness(1.15);transform:scale(1.01)}#noResults{display:none;color:var(--muted);grid-column:1/-1;text-align:center;padding:35px}footer{border-top:1px solid #ffffff12;color:var(--muted);text-align:center;padding:25px;font-size:.82rem}
+   @media(max-width:850px){.game-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){nav{display:none}.hero{grid-template-columns:1fr;padding:35px 0}.hero-art{min-height:220px}.library-heading{align-items:stretch;flex-direction:column}.search-wrap{width:100%}.game-grid{grid-template-columns:1fr}}
+ </style>
+</head>
+<body>
+ <header class="site-header"><div class="brand"><div class="brand-mark">▶</div>Foprox</div><div class="header-actions"><nav><a href="#about">Home</a><a href="#games">Games</a></nav><button class="fullscreen-button" id="pageFullscreen" type="button" aria-label="Enter fullscreen">⛶ Fullscreen</button></div></header>
+ <main>
+   <section class="hero" id="about"><div><div class="eyebrow">Your next adventure starts here</div><h1>Play more.<br><span>Wait less.</span></h1><p>Discover fast, fun browser games in one colorful place. Pick a game and jump right in.</p></div><div class="hero-art" aria-hidden="true"><div class="orb"></div><div class="pixel"></div></div></section>
+   <section id="games"><div class="library-heading"><div><h2>Featured games</h2><p>Choose your world. Make some memories.</p></div><label class="search-wrap"><span>⌕</span><input id="gameSearch" type="search" placeholder="Search games..." autocomplete="off"></label></div><div class="game-grid">
+     <article class="game-card" data-game="ovo platformer action"><div class="game-art ovo-art"><div class="art-label">OvO</div></div><div class="card-content"><div class="card-top"><h3>OvO</h3><span class="badge">Online</span></div><p>Master momentum, leap through tricky levels, and become a platforming pro.</p><button class="play-button" type="button" onclick="openOVO()">Play OvO →</button></div></article>
+     <article class="game-card" data-game="minecraft building sandbox adventure"><div class="game-art mc-art"><div class="art-label">MINECRAFT</div></div><div class="card-content"><div class="card-top"><h3>Minecraft</h3><span class="badge">Online</span></div><p>Build, explore, and survive in a blocky sandbox adventure in your browser.</p><button class="play-button" type="button" onclick="openMC()">Play Minecraft →</button></div></article>
+     <article class="game-card" data-game="geometry dash rhythm platformer music action"><div class="game-art gd-art"><div class="art-label">GEOMETRY<br>DASH</div></div><div class="card-content"><div class="card-top"><h3>Geometry Dash</h3><span class="badge">Online</span></div><p>Jump, fly, and dash through fast-paced levels filled with music and obstacles.</p><button class="play-button" type="button" onclick="openGeometryDash()">Play Geometry Dash →</button></div></article>
+     <article class="game-card" data-game="paper.io arcade io territory action"><div class="game-art paper-art"><div class="art-label">PAPER.IO</div></div><div class="card-content"><div class="card-top"><h3>Paper.io</h3><span class="badge">Online</span></div><p>Claim territory, outsmart your rivals, and expand your colorful paper empire.</p><button class="play-button" type="button" onclick="openPaperIO()">Play Paper.io →</button></div></article>
+     <article class="game-card" data-game="cookie clicker idle cookies tapping strategy"><div class="game-art cookie-art"><div class="art-label">COOKIE<br>CLICKER</div></div><div class="card-content"><div class="card-top"><h3>Cookie Clicker</h3><span class="badge">Online</span></div><p>Bake endless cookies, buy upgrades, and build the ultimate cookie empire.</p><button class="play-button" type="button" onclick="openCookieClicker()">Play Cookie Clicker →</button></div></article>
+     <article class="game-card" data-game="level devil platformer difficult troll action"><div class="game-art devil-art"><div class="art-label">LEVEL<br>DEVIL</div></div><div class="card-content"><div class="card-top"><h3>Level Devil</h3><span class="badge">Online</span></div><p>Survive sneaky traps, unexpected twists, and devilishly difficult platforming levels.</p><button class="play-button" type="button" onclick="openLevelDevil()">Play Level Devil →</button></div></article>
+     <article class="game-card" data-game="escape road 2 beta driving racing car arcade action"><div class="game-art escape-art"><div class="art-label">ESCAPE<br>ROAD 2</div></div><div class="card-content"><div class="card-top"><h3>Escape Road 2</h3><span class="badge">Beta</span></div><p>Drive fast, dodge danger, and escape the police in this thrilling browser car chase.</p><button class="play-button" type="button" onclick="openEscapeRoad2()">Play Escape Road 2 →</button></div></article>
+     <article class="game-card" data-game="spacebar clicker idle clicking keyboard arcade upgrade"><div class="game-art spacebar-art"><div class="art-label">SPACEBAR<br>CLICKER</div></div><div class="card-content"><div class="card-top"><h3>Spacebar Clicker</h3><span class="badge">Online</span></div><p>Smash the spacebar, unlock helpers, and grow your clicks-per-second score.</p><button class="play-button" type="button" onclick="openSpacebarClicker()">Play Spacebar Clicker →</button></div></article>
+     <article class="game-card" data-game="soundboard sounds audio effects music favorites"><div class="game-art sound-art"><div class="art-label">SOUND<br>BOARD</div></div><div class="card-content"><div class="card-top"><h3>Soundboard</h3><span class="badge">Online</span></div><p>Search, favorite, and play a collection of quick browser sound effects.</p><button class="play-button" type="button" onclick="openSoundboard()">Play Soundboard →</button></div></article>
+     <article class="game-card" data-game="snow rider 3d snow racing winter driving action"><div class="game-art snow-art"><div class="art-label">SNOW<br>RIDER</div></div><div class="card-content"><div class="card-top"><h3>Snow Rider 3D</h3><span class="badge">Online</span></div><p>Race down snowy slopes, dodge obstacles, and ride through a wintry 3D world.</p><button class="play-button" type="button" onclick="openSnowRider()">Play Snow Rider →</button></div></article>
+     <div id="noResults">No games found. Try another search.</div>
+   </div></section>
+ </main><footer>Made for players · Foprox Game Hub</footer>
+ <script>
+   const pageFullscreen = document.getElementById("pageFullscreen");
+   const search = document.getElementById("gameSearch");
+   const cards = [...document.querySelectorAll(".game-card")];
+
+
+   function updateFullscreenButton() {
+     const isFullscreen = document.fullscreenElement === document.body;
+     pageFullscreen.textContent = isFullscreen ? "⛶ Exit fullscreen" : "⛶ Fullscreen";
+     pageFullscreen.setAttribute("aria-label", isFullscreen ? "Exit fullscreen" : "Enter fullscreen");
+   }
+
+
+   pageFullscreen.addEventListener("click", async (event) => {
+     event.preventDefault();
+     try {
+       if (document.fullscreenElement) {
+         await document.exitFullscreen();
+       } else {
+         const requestFullscreen = document.documentElement.requestFullscreen;
+         if (requestFullscreen) await requestFullscreen.call(document.documentElement);
+       }
+     } catch (error) {
+       console.warn("Fullscreen is not available.", error);
+     }
+   });
+
+
+   document.addEventListener("fullscreenchange", updateFullscreenButton);
+   const noResults = document.getElementById("noResults");
+   search.addEventListener("input", () => {
+     const query = search.value.trim().toLowerCase();
+     let visible = 0;
+     cards.forEach(card => { const matches = card.dataset.game.includes(query); card.hidden = !matches; if (matches) visible++; });
+     noResults.style.display = visible ? "none" : "block";
+   });
+
+
+   function popup() {
+     const tab = window.open("about:blank", "_blank");
+     if (!tab) alert("Popup blocked. Please allow pop-ups for this site.");
+     return tab;
+   }
+
+
+   function openOVO() {
+     const tab = popup();
+     if (!tab) return;
+
+
+     const scriptEnd = "<" + "/script>";
+     const gameHTML = `
+<!doctype html>
+<html lang="en">
+<head>
+ <base href="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/ovomod/">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ <title>OvO</title>
+ <link rel="manifest" href="appmanifest.json">
+ <link rel="shortcut icon" href="icon-256.png">
+ <link rel="apple-touch-icon" href="icon-256.png">
+ <style>
+   *{margin:0;padding:0}
+   html,body{width:100%;height:100%;overflow:hidden;background:#000;color:#fff;touch-action:none}
+   canvas{display:block;touch-action:none}
+   #c2canvasdiv{width:100vw;height:100vh}
+   #c2canvas{width:100%;height:100%}
+ </style>
+ <link rel="stylesheet" href="animate.css">
+ <link rel="stylesheet" href="hmmg_layoutTransition.css">
+ <link rel="stylesheet" href="jquery.gritter.css">
+</head>
+<body>
+ <div id="fb-root"></div>
+ <div id="c2canvasdiv">
+   <canvas id="c2canvas" width="640" height="640">Your browser does not support HTML5 Canvas.</canvas>
+ </div>
+
+
+ <script src="jquery-3.4.1.min.js">__SCRIPT_END__
+ <script>
+   (function () {
+     const OriginalImage = window.Image;
+     window.Image = function () {
+       const image = new OriginalImage();
+       image.crossOrigin = "anonymous";
+       return image;
+     };
+     const originalCreateElement = document.createElement.bind(document);
+     document.createElement = function (tagName) {
+       const element = originalCreateElement(tagName);
+       if (tagName.toLowerCase() === "img") element.crossOrigin = "anonymous";
+       return element;
+     };
+   })();
+ __SCRIPT_END__
+ <script src="GameAnalytics.js">__SCRIPT_END__
+ <script src="Tween.js">__SCRIPT_END__
+ <script src="html2canvas.min.js">__SCRIPT_END__
+ <script src="jquery.gritter.js">__SCRIPT_END__
+ <script src="howler.js">__SCRIPT_END__
+ <script src="c7runtime.js">__SCRIPT_END__
+ <script>
+   if (window.jQuery) {
+     jQuery(function () {
+       if (typeof cr_createRuntime === "function") cr_createRuntime("c2canvas");
+       else console.error("OvO runtime failed to load.");
+     });
+   }
+
+
+   function onVisibilityChanged() {
+     if (typeof cr_setSuspended === "function") cr_setSuspended(document.hidden);
+   }
+   document.addEventListener("visibilitychange", onVisibilityChanged);
+
+
+   window.C2_RegisterSW = function () {
+     if (!navigator.serviceWorker) return;
+     navigator.serviceWorker.register("sw.js", {scope: "./"})
+       .then(registration => console.log("Service worker registered:", registration.scope))
+       .catch(error => console.warn("Service worker registration failed:", error));
+   };
+ __SCRIPT_END__
+ <script>
+   var VERSION = VERSION || (function () {
+     return {
+       version: function () { return "CTLE"; },
+       skinVersion: function () { return "1.4.5"; },
+       replayVersion: function () { return "1.4.4"; }
+     };
+   })();
+ __SCRIPT_END__
+ <script src="https://cdn.jsdelivr.net/gh/Arjun99ab/ovo@main/src/modloaders/modloader.js" id="modloader" type="module" defer>__SCRIPT_END__
+</body>
+</html>`;
+
+
+     tab.document.open();
+     tab.document.write(gameHTML.split("__SCRIPT_END__").join(scriptEnd));
+     tab.document.close();
+     tab.focus();
+   }
+
+
+   function openMC() {
+     const tab = popup(); if (!tab) return;
+     const end = "<" + "/script>";
+     const html = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Minecraft</title><style>html,body,#game_frame{margin:0;width:100%;height:100%;overflow:hidden;background:#000}</style></head><body><div id="game_frame"></div><script>window.disableUserscripts=true;window.__eaglercraftLoaderClient={container:"game_frame",name:"Eaglercraft 1.12",file:"net.peytonplayz585.eaglercraft.v1_12.client",cid:"bafybeidrnchyech7b26rqhm3tayt7p6mxvl23lzd4f5mcyqda7hbrzyal4",path:"",download:"https://cdn.jsdelivr.net/gh/FunkyTimmy/TimmyPortal@main/1.12.2.gz",dlSize:15601341,gzip:true};'+end+'<script src="https://cdn.jsdelivr.net/gh/rocketred2406/minecraft@main/minecraft-client-loader.js">'+end+'</body></html>';
+     tab.document.open(); tab.document.write(html); tab.document.close();
+   }
+
+
+   function openPaperIO() {
+     const tab = popup();
+     if (!tab) return;
+
+
+     const end = "<" + "/script>";
+     const html = `<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Paper.io</title>
+ <style>
+   html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;font-family:system-ui,sans-serif}
+   #fr{display:none;width:100%;height:100%;border:0}
+   #load{position:absolute;top:10%;left:50%;transform:translateX(-50%);z-index:2;padding:10px 22px;border:2px solid #fff;border-radius:10px;background:#000;color:#fff;font:700 24px cursive;cursor:pointer}
+   #load:hover{background:#083b00}
+   #status{position:absolute;inset:0;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#123c2b,#2eb872 55%,#b8ef65);font-size:clamp(2rem,8vw,6rem);font-weight:900;font-style:italic}
+ </style>
+</head>
+<body>
+ <div id="status">PAPER.IO</div>
+ <iframe id="fr" allowfullscreen></iframe>
+ <button id="load" type="button">Load Game</button>
+ <script>
+   const DB_NAME = "GameCacheDB";
+   const STORE_NAME = "GameFiles";
+   const CACHE_DURATION = 90 * 24 * 60 * 60 * 1000;
+   const FILE_URL = "https://cdn.jsdelivr.net/gh/centerclassroom/mc55@main/paper-io-2.xml";
+
+
+   function openDB() {
+     return new Promise((resolve, reject) => {
+       const request = indexedDB.open(DB_NAME, 1);
+       request.onupgradeneeded = event => event.target.result.createObjectStore(STORE_NAME, {keyPath:"url"});
+       request.onsuccess = event => resolve(event.target.result);
+       request.onerror = () => reject(request.error);
+     });
+   }
+
+
+   async function getFileFromCache(url) {
+     const db = await openDB();
+     const cached = await new Promise((resolve, reject) => {
+       const request = db.transaction(STORE_NAME, "readonly").objectStore(STORE_NAME).get(url);
+       request.onsuccess = () => resolve(request.result);
+       request.onerror = () => reject(request.error);
+     });
+     if (cached && Date.now() - cached.timestamp < CACHE_DURATION) return cached.content;
+     const response = await fetch(url);
+     if (!response.ok) throw new Error("Game file could not be loaded");
+     const content = await response.text();
+     await new Promise((resolve, reject) => {
+       const request = db.transaction(STORE_NAME, "readwrite").objectStore(STORE_NAME).put({url, content, timestamp:Date.now()});
+       request.onsuccess = resolve;
+       request.onerror = () => reject(request.error);
+     });
+     return content;
+   }
+
+
+   document.getElementById("load").addEventListener("click", async event => {
+     const button = event.currentTarget;
+     const frame = document.getElementById("fr");
+     try {
+       button.textContent = "Loading...";
+       const text = await getFileFromCache(FILE_URL);
+       frame.srcdoc = text;
+       frame.style.display = "block";
+       document.getElementById("status").style.display = "none";
+       button.style.display = "none";
+     } catch (error) {
+       console.error("Error loading Paper.io:", error);
+       button.textContent = "Try Again";
+       alert("The game could not be loaded. Check your internet connection.");
+     }
+   });
+
+
+   document.addEventListener("keydown", event => {
+     if (event.key.toLowerCase() === "f") {
+       if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+       else document.exitFullscreen?.();
+     }
+   });
+ __END_SCRIPT__
+</body>
+</html>`;
+     tab.document.open();
+     tab.document.write(html.replace("__END_SCRIPT__", end));
+     tab.document.close();
+     tab.focus();
+   }
+
+
+   function openCookieClicker() {
+     const tab = popup();
+     if (!tab) return;
+
+
+     const html = `<html>
+
+
+<head>
+ <meta name="viewport" content="width=900, initial-scale=1">
+ <script src="https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/old/base64.js"><\/script>
+ <script src="https://cdn.jsdelivr.net/gh/bobydob/JSEngine@135436abead1c966dde378e7e41fe832330b1f5a/dist/main.js"><\/script>
+ <link href="https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/old/style.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+ <div id="wrapper">
+   <div id="topBar">
+     <div><b>Cookie Clicker</b><a href="//orteil.dashnet.org" target="_blank" id="topbarOrteil">Orteil</a><a href="//dashnet.org" target="_blank" id="topbarDashnet">DashNet</a></div>
+     <div><a href="https://twitter.com/orteil42" target="_blank" id="topbarTwitter">twitter</a></div>
+     <div><a href="https://orteil42.tumblr.com" target="_blank" id="topbarTumblr">tumblr</a></div>
+     <div style="position:relative;">
+       <div style="width:22px;height:32px;background:url(https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/img/discord.png);position:absolute;left:0px;top:0px;pointer-events:none;"></div><a href="https://discordapp.com/invite/cookie" target="_blank" style="padding-left:16px;" id="topbarDiscord">Discord</a>
+     </div>
+     <div style="position:relative;">
+       <div style="width:25px;height:32px;background:url(https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/img/weeHoodie.png);position:absolute;left:-2px;top:0px;pointer-events:none;"></div><a class="blueLink" href="http://www.redbubble.com/people/dashnet" target="_blank" style="padding-left:12px;" id="topbarMerch">Merch!</a>
+     </div>
+     <div style="position:relative;">
+       <div style="width:22px;height:32px;background:url(https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/img/patreon.png);position:absolute;left:0px;top:0px;pointer-events:none;"></div><a class="orangeLink" href="https://www.patreon.com/dashnet" target="_blank" style="padding-left:16px;" id="topbarPatreon">Patreon</a>
+     </div>
+     <div style="position:relative;display:none;font-weight:bold;" id="heralds">
+       <div style="position:absolute;top:-4px;width:31px;height:39px;background:url(https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/img/heraldFlag.png);left:50%;margin-left:-15px;pointer-events:none;"></div>
+       <div id="heraldsAmount" style="position:relative;z-index:10;text-shadow:0px 1px 0px #000,0px 0px 6px #ff00e4;color:#fff;">-</div>
+     </div>
+     <div><a class="lightblueLink" style="font-weight:bold;" href="https://play.google.com/store/apps/details?id=org.dashnet.cookieclicker" target="_blank" id="topbarMobileCC">Cookie Clicker for Android</a></div>
+     <div><a href="//orteil.dashnet.org/randomgen/" target="_blank" id="topbarRandomgen">RandomGen</a></div>
+     <div><a href="//orteil.dashnet.org/igm/" target="_blank" id="topbarIGM">Idle Game Maker</a></div>
+     <div id="links" class="hoverer"> Other versions <div class="hoverable"> <a href="../" target="_blank" id="linkVersionLive">Live version</a> <a href="http://orteil.dashnet.org/cookieclicker/beta/" target="_blank" id="linkVersionBeta">Try the beta!</a> <a href="//orteil.dashnet.org/cookieclicker/v10466" target="_blank" id="linkVersionOld">v. 1.0466</a> <a href="//orteil.dashnet.org/experiments/cookie/" target="_blank">Classic</a> </div>
+     </div>
+   </div>
+   <div id="game">
+     <div id="javascriptError">
+       <div id="loader">
+         <div class="spinnyBig"></div>
+         <div class="spinnySmall"></div>
+         <div id="loading" class="title">Loading...</div>
+         <div id="failedToLoad" class="title">This is taking longer than expected.<br>
+           <div style="font-size:65%;line-height:120%;">Slow connection? If not, please make sure your javascript is enabled, then refresh.<br> If problems persist, this might be on our side - wait a few minutes, then hit ctrl+f5!</div>
+         </div>
+         <div id="ifIE9" class="title" style="font-size:100%;line-height:120%;">Your browser may not be recent enough to run Cookie Clicker.<br>You might want to update, or switch to a more modern browser such as Chrome or Firefox.</div>
+       </div>
+     </div> <canvas id="backgroundCanvas"></canvas>
+     <div id="goldenCookie" class="goldenCookie"></div>
+     <div id="seasonPopup" class="seasonPopup"></div>
+     <div id="shimmers"></div>
+     <div id="alert"></div>
+     <div id="particles"></div>
+     <div id="sparkles" class="sparkles"></div>
+     <div id="notes"></div>
+     <div id="darken"></div>
+     <div id="toggleBox" class="framed prompt"></div>
+     <div id="promptAnchor">
+       <div id="prompt" class="framed">
+         <div id="promptContent"></div>
+         <div class="close" onclick="PlaySound('https://cdn.jsdelivr.net/gh/bcat1023/webprx@8b966f57aeceb9616de5f15455d811ab76df9c8f/gfiles/cookies/snd/tick.mp3');Game.ClosePrompt();">x</div>
+       </div>
+     </div>
+     <div id="versionNumber" class="title"></div>
+     <div id="ascend">
+       <div id="ascendBG"></div>
+       <div id="ascendZoomable">
+         <div id="ascendContent">
+           <div id="ascendUpgrades" style="position:absolute;"></div>
+         </div>
+       </div>
+       <div id="ascendOverlay"></div>
+     </div>
+     <div id="debug">
+       <div id="devConsole" class="framed"></div>
+       <div id="debugLog"></div>
+     </div>
+     <div id="sectionLeft" class="inset"> <canvas id="backgroundLeftCanvas" style="z-index:5;"></canvas>
+       <div class="blackFiller"></div>
+       <div class="blackGradient"></div>
+       <div id="sectionLeftInfo"></div>
+       <div id="cookies" class="title"></div>
+       <div id="bakeryNameAnchor">
+         <div id="bakeryName" class="title"></div>
+       </div>
+       <div id="specialPopup" class="framed prompt offScreen"></div>
+       <div id="buffs" class="crateBox"></div>
+       <div id="cookieAnchor">
+         <div id="bigCookie"></div>
+         <div id="cookieNumbers"></div>
+       </div>
+       <div id="sectionLeftExtra"></div>
+     </div>
+     <div class="separatorLeft"></div>
+     <div class="separatorRight"></div>
+     <div id="sectionMiddle" class="inset">
+       <div id="comments" class="inset title">
+         <div id="prefsButton" class="button">Options</div>
+         <div id="statsButton" class="button">Stats</div>
+         <div id="logButton" class="button">
+           <div id="checkForUpdate">New update!</div>Info
+         </div>
+         <div id="legacyButton" class="button">Legacy<div id="ascendMeterContainer" class="smallFramed meterContainer">
+             <div id="ascendMeter" class="meter filling"></div>
+           </div>
+           <div class="roundedPanel" id="ascendNumber"></div>
+           <div id="ascendTooltip" class="framed"></div>
+         </div>
+         <div id="commentsTextBelow" class="commentsText"></div>
+         <div id="commentsText" class="commentsText"></div>
+         <div class="separatorBottom"></div>
+       </div>
+       <div id="centerArea">
+         <div id="buildingsTitle" class="inset title zoneTitle">Buildings</div>
+         <div id="buildingsMaster"></div>
+         <div id="rows"></div>
+         <div id="menu"></div>
+       </div>
+     </div>
+     <div id="sectionRight" class="inset">
+       <div id="store">
+         <div id="storeTitle" class="inset title zoneTitle">Store</div>
+         <div id="toggleUpgrades" class="storeSection upgradeBox"></div>
+         <div id="techUpgrades" class="storeSection upgradeBox"></div>
+         <div id="vaultUpgrades" class="storeSection upgradeBox"></div>
+         <div id="upgrades" class="storeSection upgradeBox"></div>
+         <div id="products" class="storeSection"></div>
+       </div>
+     </div>
+     <div id="focusButtons">
+       <div id="focusLeft" class="title">Cookie</div>
+       <div id="focusMiddle" class="title" style="font-size:80%;padding-top:18px;padding-bottom:14px;">Buildings</div>
+       <div id="focusRight" class="title">Store</div>
+       <div id="focusMenu" class="title">Menu</div>
+     </div>
+     <div id="compactOverlay" class="title">
+       <div id="compactCommentsText" class="commentsText"></div>
+       <div id="compactCookies"></div>
+       <div class="separatorBottom"></div>
+     </div>
+     <div id="tooltipAnchor">
+       <div id="tooltip" class="framed" onMouseOut="Game.tooltip.hide();"></div>
+     </div>
+   </div>
+ </div>
+ <img id="thumbnail" src="data:image/jpeg;base64,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" style="
+     position:fixed;
+     top:0;
+     left:0;
+     width:100%;
+     height:100%;
+     object-fit:cover;
+     z-index:9999;
+   ">
+ <script>
+   setTimeout(function() {
+     document.getElementById("thumbnail").remove();
+   }, 2000)
+
+
+   function toggleFullscreen() {
+     if (!document.fullscreenElement) {
+       document.documentElement.requestFullscreen();
+     } else {
+       document.exitFullscreen();
+     }
+   }
+   document.addEventListener("keydown", (e) => {
+     if (e.key === "f" || e.key === "F") {
+       toggleFullscreen();
+     }
+   });
+ <\/script>
+ <script src=""><\/script>
+ <script>
+   function toggleFullscreen() {
+     const elem = document.documentElement;
+     if (!document.fullscreenElement) {
+       if (elem.requestFullscreen) {
+         elem.requestFullscreen();
+       } else if (elem.webkitRequestFullscreen) {
+         elem.webkitRequestFullscreen();
+       } else if (elem.msRequestFullscreen) {
+         elem.msRequestFullscreen();
+       }
+     } else {
+       if (document.exitFullscreen) {
+         document.exitFullscreen();
+       } else if (document.webkitExitFullscreen) {
+         document.webkitExitFullscreen();
+       } else if (document.msExitFullscreen) {
+         document.msExitFullscreen();
+       }
+     }
+   }
+   document.addEventListener("keydown", function(event) {
+     if (event.key === "f" || event.key === "F") {
+       toggleFullscreen();
+     }
+   })
+ <\/script>
+</body>
+
+
+</html>`;
+     tab.document.open();
+     tab.document.write(html);
+     tab.document.close();
+     tab.focus();
+   }
+
+
+   function openGeometryDash() {
+     const tab = popup(); if (!tab) return;
+     const end = "<" + "/script>";
+     const html = '<!doctype html><html lang="en"><head><base href="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/gdlite/"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Dash</title><style>*{box-sizing:border-box}html,body,#gameContainer,canvas{width:100%;height:100%;margin:0;overflow:hidden;background:#000}canvas{display:block}#loader{position:fixed;inset:0;z-index:5;display:grid;place-items:center;background:linear-gradient(#000,#0666ff)}#thumbnail{position:fixed;inset:0;z-index:10;width:100%;height:100%;object-fit:cover}.loader-content{width:min(436px,90vw);text-align:center}.logo{max-width:100%;max-height:40vh}.spinner{width:50px;height:50px;margin:20px auto;border:7px solid #ffffff40;border-left-color:#fff;border-radius:50%;animation:spin 1s linear infinite}.progress{display:none;height:16px;border:2px solid #fff;border-radius:8px;overflow:hidden}.progress-bar{height:100%;background:#fff;transform:scaleX(0);transform-origin:left}@keyframes spin{to{transform:rotate(360deg)}}</style></head><body><div id="gameContainer"></div><div id="loader"><div class="loader-content"><img class="logo" src="image/loading.png?v=1" alt="Loading"><div class="spinner"></div><div class="progress"><div class="progress-bar"></div></div></div></div><img id="thumbnail" src="https://e3334afd.cf-nate.pages.dev/0/g/geodash/game/splash.png" alt="Game thumbnail"><script>window.fileMergerConfig={files:[{name:"GeometryDashLite.data.unityweb",parts:2},{name:"GeometryDashLite.wasm.code.unityweb",parts:1},{name:"GeometryDashLite.wasm.framework.unityweb",parts:1}],basePath:"Build/",debug:true};'+end+'<script src="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@ac5cdfc0042aca584e72619375b4aca948a9243c/merge.js">'+end+'<script src="Build/UnityLoader.js">'+end+'<script>function UnityProgress(game,progress){if(!game||!game.Module)return;const loader=document.getElementById("loader"),spinner=loader.querySelector(".spinner"),box=loader.querySelector(".progress"),bar=loader.querySelector(".progress-bar");box.style.display="block";spinner.style.display="none";bar.style.transform="scaleX("+Math.min(1,Math.max(0,progress))+")";if(progress>=1)setTimeout(()=>loader.remove(),2000)}if(window.UnityLoader)UnityLoader.instantiate("gameContainer","Build/GeometryDashLite.json",{onProgress:UnityProgress});'+end+'<script>document.addEventListener("keydown",e=>{if(e.key.toLowerCase()==="f")document.documentElement.requestFullscreen?.()});setTimeout(()=>document.getElementById("thumbnail")?.remove(),8000);'+end+'</body></html>';
+     tab.document.open(); tab.document.write(html); tab.document.close(); tab.focus();
+   }
+
+
+   function openEscapeRoad2() {
+     const tab = popup();
+     if (!tab) return;
+
+
+     const html = `<!doctype html>
+<html lang="en">
+<head>
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Escape Road 2 (BETA)</title>
+ <style>
+   html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}
+   #thumbnail{position:fixed;inset:0;z-index:2;width:100%;height:100%;object-fit:cover;background:#071b2d}
+   #gameFrame{border:0;width:100%;height:100%;display:block}
+ </style>
+</head>
+<body>
+ <img id="thumbnail" alt="Loading Escape Road 2">
+ <iframe id="gameFrame" src="https://script.google.com/macros/s/AKfycbykKJe1dCicuRYeS9FsOEjy7D4EhPM1BK0iLDmy4pwp3SWctliv85r1-L8CkPeYryryhg/exec" allowfullscreen></iframe>
+ <script>
+   const thumbnail = document.getElementById("thumbnail");
+   const frame = document.getElementById("gameFrame");
+   frame.addEventListener("load", () => thumbnail.remove(), {once:true});
+   function toggleFullscreen() {
+     document.fullscreenElement ? document.exitFullscreen?.() : document.documentElement.requestFullscreen?.();
+   }
+   document.addEventListener("keydown", event => {
+     if (event.key.toLowerCase() === "f") toggleFullscreen();
+   });
+ <\/script>
+</body>
+</html>`;
+     tab.document.open();
+     tab.document.write(html);
+     tab.document.close();
+     tab.focus();
+   }
+
+
+   function openSpacebarClicker() {
+     const tab = popup(); if (!tab) return;
+     const html = `<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+ <title>Spacebar Clicker</title>
+ <style>
+   *{box-sizing:border-box}body{margin:0;user-select:none;background:#e9e9e1;color:#483d21;font-family:"Courier New",monospace;overflow:hidden}#game{max-width:1000px;margin:auto;height:100vh;overflow:hidden}#counter{text-align:center;font-size:clamp(4rem,15vw,9rem);height:9rem;font-weight:700}#perSecond{text-align:center;font-size:1.25rem;margin-bottom:1rem}.sbc{text-align:center}.spacebar{border:5px solid #483d21;border-bottom-width:25px;border-radius:15px;padding:40px 30px 10px;color:#8a7d5a;font:700 1.2rem "Courier New",monospace;letter-spacing:12px;background:linear-gradient(#eff2dd,#b1b495);cursor:pointer}.spacebar:active{border-bottom-width:15px;transform:scale(.96)}#items{height:calc(100vh - 280px);overflow-y:auto;list-style:none;margin:30px 0 0;padding:10px}.item{border:1px solid #483d21;border-radius:5px;margin-bottom:15px;padding:15px;background:linear-gradient(#fcffe5,#e5e8d1);cursor:pointer}.item.locked{opacity:.5;background:#e9e9e1;cursor:default}.item h2{margin:0 0 8px;font-size:1.35rem}.item p{margin:0;line-height:1.45}.item strong{display:block;margin-top:12px}#reset{position:fixed;right:12px;top:12px;border:1px solid #483d21;border-radius:5px;padding:7px;color:#483d21;background:#f9fbb2;cursor:pointer}
+ </style>
+</head>
+<body>
+ <button id="reset" type="button">Reset</button>
+ <div id="game"><div id="counter">0</div><div id="perSecond">per second: 0.000</div><div class="sbc"><button id="spacebar" class="spacebar" type="button">SPACEBAR</button></div><ul id="items"></ul></div>
+ <script>
+   const upgrades=[
+     ["Monkey","Presses space every 5 seconds.",30,.2],
+     ["Boomer Mom","Presses it 3 times a second.",120,3],
+     ["Gen Z Kid","Presses it 20 times a second.",500,20],
+     ["Keyboard Upgrade","Doubles your own hits.",6000,"multiplier"],
+     ["Angry Influencer","Adds 150 clicks per second.",10000,150],
+     ["MOBA Gamer","Adds 600 clicks per second.",200000,600],
+     ["Pressing Robot","Adds 3,500 clicks per second.",800000,3500],
+     ["Laser Machine Gun","Adds 25,000 clicks per second.",2000000,25000]
+   ];
+   let saved=JSON.parse(localStorage.getItem("spacebar_clicker_game")||"null");
+   let state=saved||{score:0,levels:upgrades.map(()=>0),multiplier:1};
+   const counter=document.getElementById("counter"), perSecond=document.getElementById("perSecond"), list=document.getElementById("items"), button=document.getElementById("spacebar");
+   const format=value=>Math.floor(value).toLocaleString();
+   function cps(){return state.levels.reduce((sum,level,index)=>upgrades[index][3]==="multiplier"?sum:sum+level*upgrades[index][3],0)}
+   function render(){counter.textContent=format(state.score);perSecond.textContent="per second: "+cps().toFixed(3);list.innerHTML="";upgrades.forEach((item,index)=>{const level=state.levels[index],cost=Math.floor(item[2]*Math.pow(index===3?3.5:1.35,level));const row=document.createElement("li");row.className="item"+(state.score<cost?" locked":"");row.innerHTML="<h2>"+item[0]+" <small>x"+level+"</small></h2><p>"+item[1]+"</p><strong>Cost: "+format(cost)+" spacebars</strong>";row.onclick=()=>{if(state.score>=cost){state.score-=cost;state.levels[index]++;if(index===3)state.multiplier*=2;render();save()}};list.appendChild(row)})}
+   function save(){localStorage.setItem("spacebar_clicker_game",JSON.stringify(state))}
+   function clickSpace(){state.score+=state.multiplier;render();save()}
+   button.onclick=clickSpace;document.addEventListener("keydown",event=>{if(event.code==="Space"&&!event.repeat){event.preventDefault();button.classList.add("active");clickSpace()}});document.addEventListener("keyup",event=>{if(event.code==="Space")button.classList.remove("active")});document.getElementById("reset").onclick=()=>{if(confirm("Reset your Spacebar Clicker progress?")){localStorage.removeItem("spacebar_clicker_game");location.reload()}};setInterval(()=>{state.score+=cps()/10;render();save()},100);render();
+ <\/script>
+</body></html>`;
+     tab.document.open(); tab.document.write(html); tab.document.close(); tab.focus();
+   }
+
+
+   function openSoundboard() {
+     const tab = popup();
+     if (!tab) return;
+
+
+     const sounds = [
+       ["Vine Boom", "vine-boom.mp3"], ["Tuco Get Out", "tuco-get-out.mp3"],
+       ["Discord Notification", "discord-notification.mp3"], ["Anime Wow", "anime-wow.mp3"],
+       ["Metal Pipe Clang", "metal-pipe.mp3"], ["Emotional Damage", "emotional-damage.mp3"],
+       ["Fart Sound", "fart.mp3"], ["Light Skin Scare", "rizz.mp3"],
+       ["Sad Meow", "sad-meow.mp3"], ["Lack of Father Figure", "father-figure.mp3"],
+       ["Punch Sound", "punch.mp3"], ["Error Sound", "windows-error.mp3"],
+       ["Yippee", "yippee.mp3"], ["Ding", "ding.mp3"], ["Taco Bell Bong", "taco-bell.mp3"],
+       ["Dun Dun Dunnn", "dun-dun-dun.mp3"], ["Ack", "ack.mp3"], ["Mac Quack", "mac-quack.mp3"],
+       ["Discord Call", "discord-call.mp3"], ["Bone Crack", "bone-crack.mp3"], ["Mario Jump", "mario-jump.mp3"],
+       ["Womp Womp", "womp.mp3"], ["MLG Air Horn", "air-horn.mp3"], ["Pluh", "pluh.mp3"],
+       ["Gulp", "gulp.mp3"], ["Lagging", "lagging.mp3"], ["Huh Cat", "huh-cat.mp3"],
+       ["Heavenly Music", "heavenly.mp3"], ["Discord Leave", "discord-leave.mp3"], ["Pedro Song", "pedro.mp3"],
+       ["YouTube UwU", "youtube-uwu.mp3"], ["Snoring Meme", "snoring.mp3"], ["Ta-da", "ta-da.mp3"],
+       ["Money", "money.mp3"], ["Mouse Click", "mouse-click.mp3"], ["Bonk Doge", "bonk.mp3"],
+       ["Noooo", "noooo.mp3"], ["Another One", "dj-khaled.mp3"], ["Yeet", "yeet.mp3"],
+       ["Low Taper Fade", "imagine-if-ninja-got-a-low-taper-fade.mp3"], ["SpongeBob Fail", "spongebob-fail.mp3"],
+       ["Sigma Boy Bass", "sigma-boy-bass-boosted-caca.mp3"], ["Among Us Sus", "among-us-role-reveal-sound.mp3"],
+       ["Bruh", "movie_1.mp3"], ["Sad Meow Song", "sad-meow-song.mp3"], ["Flashbang", "flashbanggg.mp3"],
+       ["Hello There", "obi-wan_says_hello_thereyoutubetomp4.mp3"], ["Gas Gas Gas", "gas-gas-gaslqshort.mp3"],
+       ["Fail", "fail-sound-effect.mp3"], ["Rap God", "eminem-rap-god.mp3"], ["Mustaaaaaaaard", "kendrick-mustard.mp3"]
+     ];
+     const base = "https://www.myinstants.com/media/sounds/";
+     const html = `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Meme Soundboard</title><style>*{box-sizing:border-box}body{font-family:Arial,sans-serif;text-align:center;background:#000;color:#fff;margin:0;padding:20px}h1{color:#fff}.soundboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;margin:20px auto;max-width:1200px}.button{padding:10px;font-size:14px;background:#6200ea;color:#fff;border:0;border-radius:5px;cursor:pointer;transition:background-color .3s}.button:hover{background:#3700b3}</style></head><body><h1>Meme Soundboard</h1><div class="soundboard" id="soundboard"></div><script>const sounds=${JSON.stringify(sounds)},base=${JSON.stringify(base)};function playSound(file){const audio=new Audio(base+file);audio.play().catch(()=>alert("This sound could not be loaded."))}const board=document.getElementById("soundboard");sounds.forEach(([name,file])=>{const button=document.createElement("button");button.className="button";button.type="button";button.textContent=name;button.onclick=()=>playSound(file);board.appendChild(button)});<\/script></body></html>`;
+     tab.document.open();
+     tab.document.write(html);
+     tab.document.close();
+     tab.focus();
+   }
+
+
+   function openSnowRider() {
+     const tab = popup();
+     if (!tab) return;
+
+
+     const html = `<!DOCTYPE html>
+<html lang="en-us">
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/era6yera6y/00@main/TemplateData/favicon.ico">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/era6yera6y/00@main/TemplateData/style.css">
+ <meta name="description" content="Snow Rider 3D, Snow Rider 3D Mathnook, Snow Rider 3D Unblocked">
+ <meta property="og:image" content="https://cdn.jsdelivr.net/gh/era6yera6y/00@main/snow-rider-3d.png">
+ <style>html,body{overflow:hidden;margin:0;padding:0;width:100%;height:100%}.webgl-content{position:absolute;width:100%;height:100%}#gameContainer{width:100%;height:100%;margin:0;padding:0;border:0;position:relative;background:#231f20}#thumbnail{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:9999}</style>
+</head>
+<body>
+ <img id="thumbnail" src="https://cdn.jsdelivr.net/gh/era6yera6y/00@main/snow-rider-3d.png" alt="Snow Rider 3D">
+ <div class="webgl-content"><div id="gameContainer"></div></div>
+ <script>
+   setTimeout(function(){document.getElementById("thumbnail")?.remove()},2000);
+   function toggleFullscreen(){
+     if(!document.fullscreenElement) document.documentElement.requestFullscreen();
+     else document.exitFullscreen();
+   }
+   document.addEventListener("keydown",function(e){if(e.key==="f"||e.key==="F")toggleFullscreen()});
+ <\/script>
+ <script id="gamedistribution-jssdk" src="js/main.min.js?//html5.api.gamedistribution.com/main.min.js"><\/script>
+ <script src="https://cdn.jsdelivr.net/gh/era6yera6y/00@main/TemplateData/UnityProgress.js"><\/script>
+ <script src="https://cdn.jsdelivr.net/gh/era6yera6y/00@main/Build/UnityLoader.js"><\/script>
+ <script>
+   var gameInstance=UnityLoader.instantiate("gameContainer","https://cdn.jsdelivr.net/gh/era6yera6y/00@main/Build/SnowRider3D-gd-1.json",{onProgress:UnityProgress,Module:{onRuntimeInitialized:function(){UnityProgress(gameInstance,"complete")}}});
+ <\/script>
+</body>
+</html>`;
+     tab.document.open();
+     tab.document.write(html);
+     tab.document.close();
+     tab.focus();
+   }
+
+
+   function openLevelDevil() {
+     const tab = popup(); if (!tab) return;
+     const end = "<" + "/script>";
+     const html = `<!doctype html>
+<html lang="en">
+<head>
+ <base href="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@2ac7e5b354322a207bd059768f928ece8c9471c1/level%20devil/">
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+ <title>Level Devil</title>
+ <link rel="shortcut icon" type="image/png" href="./favicon.png">
+ <script src="./poki-sdk.js">__END_SCRIPT__
+ <script src="./Level Devil.js">__END_SCRIPT__
+ <style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000;touch-action:none}#openfl-content{width:100%;height:100%}</style>
+</head>
+<body>
+ <noscript>Please enable JavaScript to play Level Devil.</noscript>
+ <div id="openfl-content"></div>
+ <script>
+   document.addEventListener("touchmove", event => event.preventDefault(), {passive:false});
+   function toggleFullscreen(){document.fullscreenElement ? document.exitFullscreen?.() : document.documentElement.requestFullscreen?.()}
+   document.addEventListener("keydown", event => {if(event.key.toLowerCase()==="f") toggleFullscreen();});
+   lime.embed("Level Devil", "openfl-content", 854, 480, {parameters:{}});
+ __END_SCRIPT__
+</body>
+</html>`;
+     tab.document.open();
+     tab.document.write(html.split("__END_SCRIPT__").join(end));
+     tab.document.close();
+     tab.focus();
+   }
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
