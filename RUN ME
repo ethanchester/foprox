@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<body> 
+  <button onclick="openWeb()">CLICK ME</button> 
+  <script> 
+    function popup() { 
+      const tab = window.open("about:blank", "_blank"); 
+      if (!tab) alert("Popup blocked. Please allow pop-ups for this site."); 
+      return tab; 
+    } 
+    
+    function openWeb() { 
+      const tab = popup(); 
+      if (!tab) return; 
+      
+      const sourceUrl = "https://raw.githubusercontent.com/ethanchester/foprox/main/web/main"; 
+      tab.document.open(); 
+      tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Foprox...</p>"); 
+      tab.document.close(); 
+      
+      fetch(sourceUrl) 
+        .then(response => { 
+          if (!response.ok) throw new Error("Foprox could not be loaded"); 
+          return response.text(); 
+        }) 
+        .then(source => { 
+          tab.document.open(); 
+          tab.document.write(source); 
+          tab.document.close(); 
+          tab.focus(); 
+        }) 
+        .catch(error => { 
+          console.error("Error loading Foprox:", error); 
+          tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Foprox could not be loaded.</p>"; 
+        }); 
+    } 
+  </script>
+</body> 
+</html>
