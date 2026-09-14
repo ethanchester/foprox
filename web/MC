@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Minecraft</title>
+  <style>
+    html,body,#game_frame{margin:0;width:100%;height:100%;overflow:hidden}
+  </style>
+</head>
+<body>
+  <iframe id="game_frame" src="https://script.google.com/macros/s/AKfycbzqvCaM_cUb8YXLhZ7sVFKt8W_z1wXh9UlsV3dKIQ-LvGl5h7z0jRnLnNwlzW9fzm4h/exec" allowfullscreen></iframe>
+</body>
+</html>
