@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+ <title>Spacebar Clicker</title>
+ <style>
+   *{box-sizing:border-box}body{margin:0;user-select:none;background:#e9e9e1;color:#483d21;font-family:"Courier New",monospace;overflow:hidden}#game{max-width:1000px;margin:auto;height:100vh;overflow:auto}#counter{font-size:3rem;font-weight:bold;text-align:center;padding:1rem}#perSecond{text-align:center;font-size:1.2rem;margin-bottom:2rem}.sbc{text-align:center;margin:2rem 0}.spacebar{padding:1rem 2rem;font-size:1.5rem;background:#333;color:#fff;border:none;border-radius:8px;cursor:pointer}.spacebar.active{background:#555}#items{list-style:none;padding:0;margin:0}#items li{padding:1rem;background:#f0f0f0;margin:0.5rem;border-radius:8px;display:flex;justify-content:space-between;align-items:center}#reset{position:absolute;top:10px;right:10px;padding:0.5rem 1rem;background:#ff4444;color:#fff;border:none;border-radius:4px;cursor:pointer}
+ </style>
+</head>
+<body>
+ <button id="reset" type="button">Reset</button>
+ <div id="game"><div id="counter">0</div><div id="perSecond">per second: 0.000</div><div class="sbc"><button id="spacebar" class="spacebar" type="button">SPACEBAR</button></div><ul id="items"></ul></div>
+ <script>
+   const upgrades=[
+     ["Monkey","Presses space every 5 seconds.",30,.2],
+     ["Boomer Mom","Presses it 3 times a second.",120,3],
+     ["Gen Z Kid","Presses it 20 times a second.",500,20],
+     ["Keyboard Upgrade","Doubles your own hits.",6000,"multiplier"],
+     ["Angry Influencer","Adds 150 clicks per second.",10000,150],
+     ["MOBA Gamer","Adds 600 clicks per second.",200000,600],
+     ["Pressing Robot","Adds 3,500 clicks per second.",800000,3500],
+     ["Laser Machine Gun","Adds 25,000 clicks per second.",2000000,25000]
+   ];
+   let saved=JSON.parse(localStorage.getItem("spacebar_clicker_game")||"null");
+   let state=saved||{score:0,levels:upgrades.map(()=>0),multiplier:1};
+   const counter=document.getElementById("counter"), perSecond=document.getElementById("perSecond"), list=document.getElementById("items"), button=document.getElementById("spacebar");
+   const format=value=>Math.floor(value).toLocaleString();
+   function cps(){return state.levels.reduce((sum,level,index)=>upgrades[index][3]==="multiplier"?sum:sum+level*upgrades[index][3],0)}
+   function render(){counter.textContent=format(state.score);perSecond.textContent="per second: "+cps().toFixed(3);list.innerHTML="";upgrades.forEach((item,index)=>{const level=state.levels[index],cost=item[2]*Math.pow(1.15,level),li=document.createElement("li");li.innerHTML=`<div><strong>${item[0]}</strong><br><small>${item[1]}</small><br><small>Level: ${level}</small></div><button type="button" onclick="buy(${index})">Buy ($${Math.floor(cost).toLocaleString()})</button>`;list.appendChild(li)})}
+   function save(){localStorage.setItem("spacebar_clicker_game",JSON.stringify(state))}
+   function clickSpace(){state.score+=state.multiplier;render();save()}
+   button.onclick=clickSpace;document.addEventListener("keydown",event=>{if(event.code==="Space"&&!event.repeat){event.preventDefault();button.classList.add("active");clickSpace()}});document.addEventListener("keyup",event=>{if(event.code==="Space")button.classList.remove("active")});function buy(index){const cost=upgrades[index][2]*Math.pow(1.15,state.levels[index]);if(state.score>=cost){state.score-=cost;state.levels[index]++;if(upgrades[index][3]==="multiplier")state.multiplier*=2;render();save()}}document.getElementById("reset").onclick=()=>{if(confirm("Reset game? This cannot be undone.")){state={score:0,levels:upgrades.map(()=>0),multiplier:1};render();save()}};render();
+ </script>
+</body>
+</html>
