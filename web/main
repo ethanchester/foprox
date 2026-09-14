@@ -32,6 +32,13 @@
      <article class="game-card" data-game="spacebar clicker idle clicking keyboard arcade upgrade"><div class="game-art spacebar-art"><div class="art-label">SPACEBAR<br>CLICKER</div></div><div class="card-content"><div class="card-top"><h3>Spacebar Clicker</h3><span class="badge">Online</span></div><p>Smash the spacebar, unlock helpers, and grow your clicks-per-second score.</p><button class="play-button" type="button" onclick="openSpacebarClicker()">Play Spacebar Clicker →</button></div></article>
      <article class="game-card" data-game="soundboard sounds audio effects music favorites"><div class="game-art sound-art"><div class="art-label">SOUND<br>BOARD</div></div><div class="card-content"><div class="card-top"><h3>Soundboard</h3><span class="badge">Online</span></div><p>Search, favorite, and play a collection of quick browser sound effects.</p><button class="play-button" type="button" onclick="openSoundboard()">Play Soundboard →</button></div></article>
      <article class="game-card" data-game="snow rider 3d snow racing winter driving action"><div class="game-art snow-art"><div class="art-label">SNOW<br>RIDER</div></div><div class="card-content"><div class="card-top"><h3>Snow Rider 3D</h3><span class="badge">Online</span></div><p>Race down snowy slopes, dodge obstacles, and ride through a wintry 3D world.</p><button class="play-button" type="button" onclick="openSnowRider()">Play Snow Rider →</button></div></article>
+     <article class="game-card" data-game="2048 puzzle numbers strategy arcade merge"><div class="game-art cookie-art"><div class="art-label">2048</div></div><div class="card-content"><div class="card-top"><h3>2048</h3><span class="badge">Online</span></div><p>Join matching numbers, build bigger tiles, and reach the legendary 2048.</p><button class="play-button" type="button" onclick="open2048NewTab()">Play 2048 →</button></div></article>
+     <article class="game-card" data-game="among us impostor social deduction multiplayer crew space action"><div class="game-art devil-art"><div class="art-label">AMONG<br>US</div></div><div class="card-content"><div class="card-top"><h3>Among Us</h3><span class="badge">Online</span></div><p>Complete tasks, find the impostor, and survive a thrilling space mystery.</p><button class="play-button" type="button" onclick="openAmongUs()">Play Among Us →</button></div></article>
+     <article class="game-card" data-game="baldi's basics baldi school math horror educational adventure"><div class="game-art paper-art"><div class="art-label">BALDI'S<br>BASICS</div></div><div class="card-content"><div class="card-top"><h3>Baldi's Basics</h3><span class="badge">Online</span></div><p>Answer math questions, explore the school, and escape Baldi's tricky challenges.</p><button class="play-button" type="button" onclick="openBaldisBasics()">Play Baldi's Basics →</button></div></article>
+     <article class="game-card" data-game="backrooms horror escape liminal maze adventure"><div class="game-art devil-art"><div class="art-label">BACK<br>ROOMS</div></div><div class="card-content"><div class="card-top"><h3>Backrooms</h3><span class="badge">Online</span></div><p>Explore the endless yellow halls, avoid danger, and find your way out.</p><button class="play-button" type="button" onclick="openBackrooms()">Play Backrooms →</button></div></article>
+     <article class="game-card" data-game="bitlife life simulator choices career family strategy simulation"><div class="game-art cookie-art"><div class="art-label">BITLIFE</div></div><div class="card-content"><div class="card-top"><h3>BitLife</h3><span class="badge">Online</span></div><p>Make choices, build a life, and see where every decision takes you.</p><button class="play-button" type="button" onclick="openBitLife()">Play BitLife →</button></div></article>
+     <article class="game-card" data-game="drive mad driving racing car obstacle arcade action"><div class="game-art escape-art"><div class="art-label">DRIVE<br>MAD</div></div><div class="card-content"><div class="card-top"><h3>Drive Mad</h3><span class="badge">Online</span></div><p>Drive over wild obstacles, balance your vehicle, and reach the finish line.</p><button class="play-button" type="button" onclick="openDriveMad()">Play Drive Mad →</button></div></article>
+     <article class="game-card" data-game="granny hide find mystery action horror classic"><div class="game-art ovo-art"><div class="art-label">GRANNY</div></div><div class="card-content"><div class="card-top"><h3>Granny (sorry broken)</h3><span class="badge">Online</span></div><p>Hide in a crazy grandmas house and find a way out.</p><button class="play-button" type="button" onclick="openGranny()">Play Granny →</button></div></article>
      <div id="noResults">No games found. Try another search.</div>
    </div></section>
  </main><footer>Made for players · Foprox Game Hub</footer>
@@ -502,10 +509,29 @@
 
 
    function openGeometryDash() {
-     const tab = popup(); if (!tab) return;
-     const end = "<" + "/script>";
-     const html = '<!doctype html><html lang="en"><head><base href="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/gdlite/"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry Dash</title><style>*{box-sizing:border-box}html,body,#gameContainer,canvas{width:100%;height:100%;margin:0;overflow:hidden;background:#000}canvas{display:block}#loader{position:fixed;inset:0;z-index:5;display:grid;place-items:center;background:linear-gradient(#000,#0666ff)}#thumbnail{position:fixed;inset:0;z-index:10;width:100%;height:100%;object-fit:cover}.loader-content{width:min(436px,90vw);text-align:center}.logo{max-width:100%;max-height:40vh}.spinner{width:50px;height:50px;margin:20px auto;border:7px solid #ffffff40;border-left-color:#fff;border-radius:50%;animation:spin 1s linear infinite}.progress{display:none;height:16px;border:2px solid #fff;border-radius:8px;overflow:hidden}.progress-bar{height:100%;background:#fff;transform:scaleX(0);transform-origin:left}@keyframes spin{to{transform:rotate(360deg)}}</style></head><body><div id="gameContainer"></div><div id="loader"><div class="loader-content"><img class="logo" src="image/loading.png?v=1" alt="Loading"><div class="spinner"></div><div class="progress"><div class="progress-bar"></div></div></div></div><img id="thumbnail" src="https://e3334afd.cf-nate.pages.dev/0/g/geodash/game/splash.png" alt="Game thumbnail"><script>window.fileMergerConfig={files:[{name:"GeometryDashLite.data.unityweb",parts:2},{name:"GeometryDashLite.wasm.code.unityweb",parts:1},{name:"GeometryDashLite.wasm.framework.unityweb",parts:1}],basePath:"Build/",debug:true};'+end+'<script src="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@ac5cdfc0042aca584e72619375b4aca948a9243c/merge.js">'+end+'<script src="Build/UnityLoader.js">'+end+'<script>function UnityProgress(game,progress){if(!game||!game.Module)return;const loader=document.getElementById("loader"),spinner=loader.querySelector(".spinner"),box=loader.querySelector(".progress"),bar=loader.querySelector(".progress-bar");box.style.display="block";spinner.style.display="none";bar.style.transform="scaleX("+Math.min(1,Math.max(0,progress))+")";if(progress>=1)setTimeout(()=>loader.remove(),2000)}if(window.UnityLoader)UnityLoader.instantiate("gameContainer","Build/GeometryDashLite.json",{onProgress:UnityProgress});'+end+'<script>document.addEventListener("keydown",e=>{if(e.key.toLowerCase()==="f")document.documentElement.requestFullscreen?.()});setTimeout(()=>document.getElementById("thumbnail")?.remove(),8000);'+end+'</body></html>';
-     tab.document.open(); tab.document.write(html); tab.document.close(); tab.focus();
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/geometry-dash-lite.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Geometry Dash...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("Geometry Dash could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading Geometry Dash:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Geometry Dash could not be loaded.</p>";
+       });
    }
 
 
@@ -667,6 +693,216 @@
    }
 
 
+   function openAmongUs() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/among-us.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Among Us...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("Among Us could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading Among Us:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Among Us could not be loaded.</p>";
+       });
+   }
+
+
+   function openDriveMad() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/drive-mad.htm";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Drive Mad...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("Drive Mad could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading Drive Mad:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Drive Mad could not be loaded.</p>";
+       });
+   }
+
+
+   function openBitLife() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/bitlife.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading BitLife...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("BitLife could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading BitLife:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>BitLife could not be loaded.</p>";
+       });
+   }
+
+   function openGranny() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/granny.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Granny...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("Granny could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading Granny:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Granny could not be loaded.</p>";
+       });
+   }
+
+   function openBackrooms() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/backrooms.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Backrooms...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("Backrooms could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading Backrooms:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Backrooms could not be loaded.</p>";
+       });
+   }
+
+
+   function openBaldisBasics() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/baldis-basics.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Baldi's Basics...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("Baldi's Basics could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading Baldi's Basics:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>Baldi's Basics could not be loaded.</p>";
+       });
+   }
+
+
+   function open2048NewTab() {
+     const tab = popup();
+     if (!tab) return;
+
+     const sourceURL = "https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/master/offline/2048.html";
+     tab.document.open();
+     tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading 2048...</p>");
+     tab.document.close();
+
+     fetch(sourceURL)
+       .then(response => {
+         if (!response.ok) throw new Error("2048 could not be loaded");
+         return response.text();
+       })
+       .then(source => {
+         tab.document.open();
+         tab.document.write(source);
+         tab.document.close();
+         tab.focus();
+       })
+       .catch(error => {
+         console.error("Error loading 2048:", error);
+         tab.document.body.innerHTML = "<p style='font-family:system-ui;padding:2rem'>2048 could not be loaded.</p>";
+       });
+   }
+
+   /*
+     The original embedded 2048 launcher is kept below for reference.
+     It is intentionally not used by the card button.
+   */
+   function open2048Embedded() {
+     const tab = popup();
+     if (!tab) return;
+
+     const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>2048</title><style>
+       *{box-sizing:border-box}html,body{margin:0;background:#faf8ef;color:#776e65;font-family:Arial,sans-serif}body{padding:24px 16px}.wrap{width:min(500px,100%);margin:auto}.heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}h1{font-size:clamp(58px,16vw,80px);line-height:.9;margin:0;font-weight:900}.scores{display:flex;gap:6px}.score,.best{position:relative;min-width:74px;padding:25px 10px 8px;border-radius:4px;background:#bbada0;color:#fff;text-align:center;font-size:22px;font-weight:bold}.score:before,.best:before{position:absolute;top:6px;left:0;width:100%;color:#eee4da;font-size:11px;text-transform:uppercase}.score:before{content:"Score"}.best:before{content:"Best"}.above{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 12px}.intro{margin:0;line-height:1.4}.button{border:0;border-radius:4px;padding:10px 14px;background:#8f7a66;color:#f9f6f2;font-weight:bold;cursor:pointer;white-space:nowrap}.board{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:12px;border-radius:6px;background:#bbada0;touch-action:none}.cell{aspect-ratio:1;border-radius:4px;background:#d8cfc5}.tile{position:absolute;display:grid;place-items:center;inset:auto;width:calc((100% - 60px)/4);aspect-ratio:1;border-radius:4px;background:#eee4da;font-size:clamp(22px,8vw,48px);font-weight:bold;transition:transform .12s}.tile[data-value="4"]{background:#ede0c8}.tile[data-value="8"]{background:#f2b179;color:#fff}.tile[data-value="16"]{background:#f59563;color:#fff}.tile[data-value="32"]{background:#f67c5f;color:#fff}.tile[data-value="64"]{background:#f65e3b;color:#fff}.tile[data-value="128"],.tile[data-value="256"],.tile[data-value="512"],.tile[data-value="1024"],.tile[data-value="2048"]{background:#edc53f;color:#fff;font-size:clamp(18px,6vw,36px)}.message{display:none;position:absolute;inset:0;z-index:2;place-items:center;align-content:center;gap:16px;background:#eee4daaa;text-align:center;font-size:clamp(28px,9vw,52px);font-weight:bold}.message.show{display:grid}.help{line-height:1.5}.help strong{ text-transform:uppercase}@media(max-width:400px){.above{align-items:stretch;flex-direction:column}.button{width:100%}}
+     </style></head><body><main class="wrap"><div class="heading"><h1>2048</h1><div class="scores"><div class="score" id="score">0</div><div class="best" id="best">0</div></div></div><div class="above"><p class="intro">Join the numbers and get to the <strong>2048 tile!</strong></p><button class="button" id="restart" type="button">New Game</button></div><div class="board" id="board">${Array(16).fill('<div class="cell"></div>').join('')}<div class="message" id="message"><div id="messageText"></div><button class="button" id="tryAgain" type="button">Try again</button></div></div><p class="help"><strong>How to play:</strong> Use arrow keys, WASD, or swipe to move. Matching tiles merge into one.</p></main><script>
+       const board=document.getElementById('board'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),message=document.getElementById('message'),messageText=document.getElementById('messageText');let grid,score,won,playing=true;const key='foprox-2048';
+       function load(){try{const saved=JSON.parse(localStorage.getItem(key));if(saved){grid=saved.grid;score=saved.score;won=saved.won||false;playing=!saved.over;return}}catch(e){}newGame()}
+       function newGame(){grid=Array.from({length:4},()=>Array(4).fill(0));score=0;won=false;playing=true;add();add();save();message.classList.remove('show');render()}
+       function add(){const empty=[];grid.forEach((row,y)=>row.forEach((v,x)=>{if(!v)empty.push([x,y])}));if(empty.length){const [x,y]=empty[Math.floor(Math.random()*empty.length)];grid[y][x]=Math.random()<.9?2:4}}
+       function save(){localStorage.setItem(key,JSON.stringify({grid,score,won,over:!playing}))}
+       function render(){board.querySelectorAll('.tile').forEach(t=>t.remove());grid.forEach((row,y)=>row.forEach((v,x)=>{if(!v)return;const tile=document.createElement('div');tile.className='tile';tile.dataset.value=v;tile.textContent=v;tile.style.left=(2.4 + x * 25)+"%";tile.style.top=(2.4 + y * 25)+"%";board.appendChild(tile)}));scoreEl.textContent=score;bestEl.textContent=Math.max(score,Number(localStorage.getItem('foprox-2048-best')||0));localStorage.setItem('foprox-2048-best',Math.max(score,Number(localStorage.getItem('foprox-2048-best')||0)));}
+       function move(dir){if(!playing)return;const old=JSON.stringify(grid);const lines=[];for(let i=0;i<4;i++){let line=dir<2?grid.map(r=>r[i]):grid[i].slice();if(dir===0||dir===3)line.reverse();let compact=line.filter(Boolean),merged=[];for(let j=0;j<compact.length;j++){if(compact[j]===compact[j+1]){compact[j]*=2;score+=compact[j];j++}merged.push(compact[j])}while(merged.length<4)merged.push(0);if(dir===0||dir===3)merged.reverse();lines.push(merged)}if(dir<2)lines[0].forEach((_,i)=>{for(let y=0;y<4;y++)grid[y][i]=lines[y][i]});else grid=lines;if(JSON.stringify(grid)===old)return;add();if(grid.some(r=>r.includes(2048))&&!won){won=true;show('You win!')}if(!canMove()){playing=false;show('Game over!')}save();render()}
+       function canMove(){if(grid.some(r=>r.includes(0)))return true;for(let y=0;y<4;y++)for(let x=0;x<4;x++)if(grid[y][x]===grid[y]?.[x+1]||grid[y][x]===grid[y+1]?.[x])return true;return false}function show(text){messageText.textContent=text;message.classList.add('show')}function keyMove(e){const map={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,w:0,d:1,s:2,a:3};const d=map[e.key];if(d!==undefined){e.preventDefault();move(d)}}let start;board.addEventListener('touchstart',e=>{start=e.touches[0]},{passive:true});board.addEventListener('touchend',e=>{if(!start)return;const end=e.changedTouches[0],dx=end.clientX-start.clientX,dy=end.clientY-start.clientY;if(Math.max(Math.abs(dx),Math.abs(dy))>20)move(Math.abs(dx)>Math.abs(dy)?dx>0?1:3:dy>0?2:0);start=null});document.addEventListener('keydown',keyMove);document.getElementById('restart').onclick=newGame;document.getElementById('tryAgain').onclick=newGame;load();render();
+     <\/script></body></html>`;
+     tab.document.open(); tab.document.write(html); tab.document.close(); tab.focus();
+   }
+
+
    function openLevelDevil() {
      const tab = popup(); if (!tab) return;
      const end = "<" + "/script>";
@@ -697,6 +933,35 @@
      tab.document.write(html.split("__END_SCRIPT__").join(end));
      tab.document.close();
      tab.focus();
+   }
+
+   // Local 2048 launcher retained for reference; the new-tab launcher above is used.
+   function open2048Local() {
+     const old = document.getElementById("local2048");
+     if (old) old.remove();
+
+     const overlay = document.createElement("div");
+     overlay.id = "local2048";
+     overlay.innerHTML = `<div class="local2048-box"><button class="local2048-close" type="button" aria-label="Close 2048">×</button><h2>2048</h2><p>Use arrow keys, WASD, or swipe to move.</p><div class="local2048-score">Score: <b>0</b> · Best: <b>0</b></div><div class="local2048-board"></div><button class="local2048-new" type="button">New Game</button></div>`;
+     document.body.appendChild(overlay);
+
+     const style = document.createElement("style");
+     style.textContent = `#local2048{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:16px;background:#000b;font-family:Arial,sans-serif;color:#776e65}.local2048-box{position:relative;width:min(500px,100%);padding:24px 16px;border-radius:12px;background:#faf8ef}.local2048-box h2{font-size:clamp(58px,16vw,80px);margin:0}.local2048-box p{margin:8px 0;line-height:1.4}.local2048-close{position:absolute;right:12px;top:10px;border:0;background:transparent;color:#776e65;font-size:32px;cursor:pointer}.local2048-score{text-align:center;margin:12px 0;font-weight:bold}.local2048-board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:12px;border-radius:6px;background:#bbada0;touch-action:none}.local2048-cell{aspect-ratio:1;display:grid;place-items:center;border-radius:4px;background:#d8cfc5;font-size:clamp(22px,8vw,48px);font-weight:bold}.local2048-cell[data-value="2"]{background:#eee4da}.local2048-cell[data-value="4"]{background:#ede0c8}.local2048-cell[data-value="8"]{background:#f2b179;color:#fff}.local2048-cell[data-value="16"]{background:#f59563;color:#fff}.local2048-cell[data-value="32"]{background:#f67c5f;color:#fff}.local2048-cell[data-value="64"]{background:#f65e3b;color:#fff}.local2048-cell[data-value="128"],.local2048-cell[data-value="256"],.local2048-cell[data-value="512"],.local2048-cell[data-value="1024"],.local2048-cell[data-value="2048"]{background:#edc53f;color:#fff}.local2048-new{display:block;margin:16px auto 0;border:0;border-radius:4px;padding:12px 18px;background:#8f7a66;color:#fff;font-weight:bold;cursor:pointer}`;
+     document.head.appendChild(style);
+
+     const board = overlay.querySelector(".local2048-board"), scoreText = overlay.querySelector(".local2048-score"), size = 4;
+     let grid, score = 0, best = Number(localStorage.getItem("foprox-2048-best") || 0), start;
+     function addTile(){const empty=[];grid.forEach((row,y)=>row.forEach((value,x)=>{if(!value)empty.push([x,y])}));if(empty.length){const cell=empty[Math.floor(Math.random()*empty.length)];grid[cell[1]][cell[0]]=Math.random()<.9?2:4}}
+     function render(){board.innerHTML="";grid.flat().forEach(value=>{const cell=document.createElement("div");cell.className="local2048-cell";cell.dataset.value=value||"empty";cell.textContent=value||"";board.appendChild(cell)});scoreText.innerHTML="Score: <b>"+score+"</b> · Best: <b>"+best+"</b>"}
+     function newGame(){grid=Array.from({length:size},()=>Array(size).fill(0));score=0;addTile();addTile();render()}
+     function move(direction){const old=JSON.stringify(grid);for(let i=0;i<size;i++){let line=direction<2?grid.map(row=>row[i]):grid[i].slice();if(direction===0||direction===3)line.reverse();line=line.filter(Boolean);for(let j=0;j<line.length-1;j++){if(line[j]===line[j+1]){line[j]*=2;score+=line[j];line.splice(j+1,1)}}while(line.length<size)line.push(0);if(direction===0||direction===3)line.reverse();if(direction<2)line.forEach((value,y)=>grid[y][i]=value);else grid[i]=line}if(JSON.stringify(grid)!==old){best=Math.max(best,score);localStorage.setItem("foprox-2048-best",best);addTile();render()}}
+     function keyMove(event){const keys={ArrowUp:0,w:0,ArrowRight:1,d:1,ArrowDown:2,s:2,ArrowLeft:3,a:3};const direction=keys[event.key];if(direction!==undefined){event.preventDefault();move(direction)}}
+     overlay.querySelector(".local2048-close").onclick=()=>{style.remove();overlay.remove();document.removeEventListener("keydown",keyMove)};
+     overlay.querySelector(".local2048-new").onclick=newGame;
+     document.addEventListener("keydown",keyMove);
+     board.addEventListener("touchstart",event=>{start=event.touches[0]},{passive:true});
+     board.addEventListener("touchend",event=>{if(!start)return;const end=event.changedTouches[0],dx=end.clientX-start.clientX,dy=end.clientY-start.clientY;if(Math.max(Math.abs(dx),Math.abs(dy))>20)move(Math.abs(dx)>Math.abs(dy)?dx>0?1:3:dy>0?2:0);start=null});
+     newGame();
    }
  </script>
 </body>
