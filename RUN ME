@@ -13,7 +13,7 @@
       const tab = popup(); 
       if (!tab) return; 
       
-      const sourceUrl = "https://raw.githubusercontent.com/ethanchester/foprox/main/web/main"; 
+      const sourceUrl = "https://raw.githubusercontent.com/ethanchester/foprox/refs/heads/main/main"; 
       tab.document.open(); 
       tab.document.write("<p style='font-family:system-ui;padding:2rem'>Loading Foprox...</p>"); 
       tab.document.close(); 
