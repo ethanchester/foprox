@@ -192,7 +192,7 @@
   function popup() {
     const tab = window.open("about:blank", "_blank");
     if (!tab) { alert("Popup blocked. Please allow pop-ups for this site."); return null; }
-    tab.document.write("<title>Loading game...</title><link rel='stylesheet' href='styles.css'><main class='loading-page'>Loading game...</main>");
+    tab.document.write("<title>Loading game...</title><link rel='stylesheet' href='style.css'><main class='loading-page'>Loading game...</main>");
     tab.document.close(); return tab;
   }
   updateFavoriteButtons();
