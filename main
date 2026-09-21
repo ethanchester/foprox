@@ -1,55 +1,267 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080b1d"><title>Foprox | Game Hub</title>
-<style>
-:root{--bg:#080b1d;--panel:#141937dd;--text:#f7f8ff;--muted:#aeb5d8;--purple:#9d7bff;--cyan:#54d9ff;--pink:#ff6fbd}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;color:var(--text);font:16px Inter,system-ui,sans-serif;background:linear-gradient(145deg,#080b1d,#101735);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 10%,#302061,transparent 34%),radial-gradient(circle at 85% 25%,#123d60,transparent 30%)}header,main{width:min(1160px,calc(100% - 36px));margin:auto}header{padding:24px 0;display:flex;justify-content:space-between;align-items:center}.brand{font-size:1.35rem;font-weight:900}.brand:before{content:'▶';display:inline-grid;place-items:center;width:38px;height:38px;margin-right:10px;color:#11152f;border-radius:13px;transform:rotate(-8deg);background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink))}nav a{margin-left:24px;color:var(--muted);text-decoration:none}button,input{font:inherit}.fullscreen-button,.offline-game button{border:1px solid #ffffff25;border-radius:10px;padding:9px 12px;color:#fff;background:#ffffff0d;cursor:pointer}.hero{min-height:400px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:55px 0 75px}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:800}h1{margin:13px 0 18px;font-size:clamp(3rem,8vw,6.7rem);line-height:.9;letter-spacing:-.08em}h1 span{color:var(--purple)}.hero p,.library-heading p,.card-content p{color:var(--muted);line-height:1.6}.hero-art{display:grid;place-items:center;min-height:290px}.orb{width:220px;height:220px;display:grid;place-items:center;border-radius:45% 55% 60% 40%;transform:rotate(25deg);color:#fff9;font-size:5rem;background:linear-gradient(135deg,#44ddff,#695cff 55%,#ff65bd);box-shadow:0 0 80px #756dff99;animation:float 5s ease-in-out infinite}@keyframes float{50%{transform:translateY(-16px) rotate(32deg)}}.library-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.search-wrap{width:min(100%,310px)}#gameSearch,.custom-url-input{width:100%;padding:12px;border:1px solid #ffffff20;border-radius:12px;outline:0;color:#fff;background:#ffffff0d}.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-bottom:55px}.game-card{overflow:hidden;border:1px solid #ffffff18;border-radius:16px;background:var(--panel);box-shadow:0 12px 28px #0004;backdrop-filter:blur(14px);transition:.25s}.game-card:hover{transform:translateY(-4px);border-color:#9d7bff99}.game-card[hidden]{display:none}.game-art{height:105px;display:grid;place-items:center;padding:12px;font-size:clamp(1.5rem,3vw,2.7rem);font-weight:950;letter-spacing:-.08em;text-align:center;text-shadow:3px 3px #0005}.art-0{background:linear-gradient(135deg,#271456,#db438d)}.art-1{background:linear-gradient(135deg,#163e57,#6c9d5c)}.art-2{background:linear-gradient(135deg,#081b55,#087ed1,#31d6ff)}.art-3{background:linear-gradient(135deg,#123c2b,#2eb872,#b8ef65)}.art-4{background:linear-gradient(135deg,#4b200d,#b76525,#f4c15d)}.art-5{background:linear-gradient(135deg,#180000,#8f1414,#ff5b35)}.card-content{padding:13px}.card-top{display:flex;justify-content:space-between;gap:8px;align-items:center}h2,h3{margin:0}.card-top h3{font-size:1rem}.badge{padding:4px 7px;border:1px solid #3ad77a55;border-radius:99px;color:#bdf8d1;font-size:.65rem;font-weight:800}.card-content p{min-height:38px;margin:10px 0;font-size:.8rem;line-height:1.4}.play-button{width:100%;padding:10px;border:0;border-radius:9px;color:#fff;font-size:.85rem;font-weight:800;background:linear-gradient(100deg,#765cf4,#c05bdb);cursor:pointer}.custom-url-label{display:block;margin-top:15px;color:var(--muted);font-size:.8rem;font-weight:700}.custom-url-input{margin:7px 0 12px;font-size:.78rem}.status{min-height:18px;margin-top:9px;color:var(--muted);font-size:.75rem}.error{color:#ff9dbd}.offline-games{margin-top:18px;padding-top:14px;border-top:1px solid #ffffff12}.offline-game-list{display:grid;gap:8px}.offline-game{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px;border:1px solid #ffffff18;border-radius:10px;font-size:.78rem}.offline-game-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.offline-game-actions{display:flex;gap:6px;flex-shrink:0}.offline-game button{padding:6px 8px;font-size:.7rem}.empty,#noResults{color:var(--muted);font-size:.75rem}#noResults{display:none;grid-column:1/-1;text-align:center;padding:35px}footer{padding:25px;border-top:1px solid #ffffff12;color:var(--muted);text-align:center;font-size:.82rem}@media(max-width:850px){.game-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){nav{display:none}.hero{grid-template-columns:1fr;padding:35px 0}.hero-art{min-height:220px}.library-heading{align-items:stretch;flex-direction:column}.search-wrap,.game-grid{width:100%}.game-grid{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+      background: #26003f;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+    }
+    .lava-blob {
+      position: fixed;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(22px);
+      opacity: .62;
+      pointer-events: none;
+      animation: lavaFloat var(--duration) ease-in-out infinite alternate;
+    }
+    header, main {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes lavaFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(var(--move-x), var(--move-y)) scale(1.22); }
+      100% { transform: translate(calc(var(--move-x) * -0.7), calc(var(--move-y) * 1.4)) scale(.86); }
+    }
+    header {
+      display: flex;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto 24px;
+    }
+    input, button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+    }
+    input { min-width: 0; flex: 1; }
+    button {
+      background: #fff;
+      color: #5b1290;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button:hover { background: #ead8ff; }
+    main { max-width: 900px; margin: auto; }
+    #grid, #offline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+    }
+    article {
+      padding: 16px;
+      border: 1px solid #ffffff35;
+      border-radius: 12px;
+      background: #ffffff18;
+      box-shadow: 0 4px 14px #24003b45;
+    }
+    h3 { margin: 0 0 14px; }
+    article button { margin: 3px 2px 0 0; }
+    article input { width: 100%; margin-bottom: 8px; }
+    section { margin-top: 28px; }
+    h2 { margin-bottom: 12px; }
+    @media (max-width: 520px) {
+      body { padding: 16px; }
+      header { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-<header><div class="brand">Foprox</div><div><nav><a href="#about">Home</a><a href="#games">Games</a></nav> <button class="fullscreen-button" id="fullscreen">⛶ Fullscreen</button></div></header>
-<main>
-<section class="hero" id="about"><div><div class="eyebrow">Your next adventure starts here</div><h1>Play more.<br><span>Wait less.</span></h1><p>Discover fast, fun browser games in one colorful place. Pick a game and jump right in.</p></div><div class="hero-art" aria-hidden="true"><div class="orb">▶</div></div></section>
-<section id="games"><div class="library-heading"><div><h2>Featured games</h2><p>Choose your world. Make some memories.</p></div><label class="search-wrap"><input id="gameSearch" type="search" placeholder="Search games..." autocomplete="off"></label></div><div class="game-grid" id="gameGrid"></div></section>
-</main><footer>Made for players · Foprox Game Hub</footer>
-<script>
-const games=[
- ['OvO','platformer action','Master momentum and leap through tricky levels.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/ovo.html'],
- ['Minecraft','building sandbox adventure','Build, explore, and survive in a blocky sandbox.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/1.12.html'],
- ['Geometry Dash','rhythm platformer music action','Dash through fast-paced levels filled with obstacles.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/geometry-dash-lite.html'],
- ['Paper.io','arcade io territory action','Claim territory and expand your colorful empire.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/paper-io-2.htm'],
- ['Cookie Clicker','idle cookies tapping strategy','Bake endless cookies and build an empire.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/cookie-clicker.htm'],
- ['Level Devil','platformer difficult troll action','Survive sneaky traps and devilishly difficult levels.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/level-devil.html'],
- ['Escape Road 2','driving racing car arcade action','Drive fast, dodge danger, and escape the police.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/escape-road-2.html'],
- ['Spacebar Clicker','idle clicking keyboard arcade','Smash the spacebar and grow your score.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/spacebar-clicker.html'],
- ['Snow Rider 3D','snow racing winter driving action','Race down snowy slopes and dodge obstacles.','https://cdn.jsdelivr.net/gh/era6yera6y/00@main/index.html'],
- ['2048','puzzle numbers strategy arcade merge','Join matching numbers and reach 2048.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/master/offline/2048.html'],
- ['Among Us','impostor social deduction multiplayer space','Complete tasks and find the impostor.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/among-us.html'],
- ['Baldi’s Basics','school math horror adventure','Answer questions and escape the school.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/baldis-basics.html'],
- ['Backrooms','horror escape liminal maze','Explore the endless halls and find a way out.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/backrooms.html'],
- ['BitLife','life simulator choices career family','Make choices and build a life.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/bitlife.html'],
- ['Drive Mad','driving racing car obstacle arcade','Balance your vehicle and reach the finish line.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/drive-mad.htm'],
- ['Granny','hide find mystery horror','Hide and find a way out.','https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/granny.html']
-];
-const grid=document.getElementById('gameGrid');
-const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function card([name,tags,desc,url],i){return `<article class="game-card" data-game="${esc((name+' '+tags).toLowerCase())}"><div class="game-art art-${i%6}">${esc(name.toUpperCase())}</div><div class="card-content"><div class="card-top"><h3>${esc(name)}</h3><span class="badge">Online</span></div><p>${esc(desc)}</p><button class="play-button" data-url="${esc(url)}">Play ${esc(name)} →</button></div></article>`}
-grid.innerHTML=games.map(card).join('')+`<article class="game-card" data-game="custom url github html code game"><div class="game-art art-2">CUSTOM<br>URL</div><div class="card-content"><div class="card-top"><h3>Custom URL Game</h3><span class="badge">HTML</span></div><p>Paste a raw GitHub HTML URL to open or save your own browser game.</p><input class="custom-url-input" id="customUrl" type="url" placeholder="https://raw.githubusercontent.com/..." autocomplete="off"><button class="play-button" id="openCustom">Open Custom Game →</button><button class="play-button" id="download" style="margin-top:8px;background:linear-gradient(100deg,#168caa,#54d9ff)">Download Offline →</button><div class="status" id="status" role="status"></div><div class="offline-games"><b>Downloaded games</b><div class="offline-game-list" id="offlineList"></div></div></div></article><div id="noResults">No games found. Try another search.</div>`;
-const $=id=>document.getElementById(id), status=$('status');
-function popup(){const w=open('about:blank','_blank');if(!w)alert('Popup blocked. Please allow pop-ups for this site.');return w}
-function valid(){try{const u=new URL($('customUrl').value.trim());if(u.protocol==='https:'&&u.hostname.includes('githubusercontent.com'))return u}catch{}status.textContent='Enter a secure raw GitHub URL.';status.className='status error'}
-async function source(url){const r=await fetch(url);if(!r.ok)throw Error();return r.text()}
-function openSource(url,name='Game'){const w=popup();if(!w)return;w.document.write(`<p style="font-family:system-ui;padding:2rem">Loading ${esc(name)}...</p>`);source(url).then(s=>{w.document.open();w.document.write(s);w.document.close()}).catch(()=>{w.document.body.innerHTML='<p style="font-family:system-ui;padding:2rem">The game could not be loaded.</p>'})}
-grid.addEventListener('click',e=>{const b=e.target.closest('[data-url]');if(!b)return;const g=games.find(x=>x[3]===b.dataset.url);if(b.dataset.url==='local'){alert('This game is built into the original launcher.');return}if(b.dataset.url==='sounds'){alert('Soundboard requires its original audio assets.');return}openSource(b.dataset.url,g?.[0])});
-$('openCustom').onclick=()=>{const u=valid();if(u)openSource(u.href,'custom game')};
-const DB='foprox-offline-games',STORE='games';function db(){return new Promise((ok,no)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=e=>e.target.result.createObjectStore(STORE,{keyPath:'url'});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
-async function all(){const d=await db();return new Promise((ok,no)=>{const r=d.transaction(STORE).objectStore(STORE).getAll();r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
-async function save(game){const d=await db();return new Promise((ok,no)=>{const r=d.transaction(STORE,'readwrite').objectStore(STORE).put(game);r.onsuccess=ok;r.onerror=()=>no(r.error)})}
-async function remove(url){const d=await db();d.transaction(STORE,'readwrite').objectStore(STORE).delete(url)}
-async function render(){const list=$('offlineList'),items=await all();list.innerHTML=items.length?'':'<span class="empty">No games downloaded yet.</span>';items.forEach((g,i)=>{const row=document.createElement('div');row.className='offline-game';row.innerHTML=`<span class="offline-game-name">${esc(g.name)}</span><span class="offline-game-actions"><button data-run="${i}">Run</button><button data-delete="${i}">Delete</button></span>`;list.append(row)});list.items=items}
-$('download').onclick=async()=>{if(!confirm('Are you sure? This is VERY laggy and may use a lot of browser storage.'))return;const u=valid();if(!u)return;status.textContent='Downloading...';try{await save({url:u.href,name:decodeURIComponent(u.pathname.split('/').pop()||'Offline Game'),source:await source(u.href)});status.textContent='Downloaded. Saved in this browser.';render()}catch{status.textContent='Not enough browser storage or the download failed.';status.className='status error'}};
-$('offlineList').onclick=async e=>{const items=e.currentTarget.items,g=items[e.target.dataset.run??e.target.dataset.delete];if(!g)return;if(e.target.dataset.run!==undefined){const w=popup();if(w){w.document.open();w.document.write(g.source);w.document.close()}}else{await remove(g.url);render()}};
-$('gameSearch').oninput=e=>{const q=e.target.value.toLowerCase(),cards=[...grid.querySelectorAll('.game-card')];let n=0;cards.forEach(c=>{const yes=c.dataset.game.includes(q);c.hidden=!yes;if(yes)n++});$('noResults').style.display=n?'none':'block'};
-$('fullscreen').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();render();
-</script>
-</body></html>
+  <header>
+    <button id="full">⛶ Fullscreen</button>
+    <input id="search" type="search" placeholder="Search games...">
+  </header>
+  <main id="games">
+    <div id="grid"></div>
+    <p id="none" hidden>No games found.</p>
+  </main>
+  <script>
+    const blobColors = ['#a238ff', '#ff3cac', '#7024ff', '#e83cff', '#c026d3'];
+    const blobCount = 3 + Math.floor(Math.random() * 5);
+
+    for (let i = 0; i < blobCount; i++) {
+      const blob = document.createElement('div');
+      const size = 22 + Math.random() * 42;
+      blob.className = 'lava-blob';
+      blob.style.width = `${size}vw`;
+      blob.style.height = `${size}vw`;
+      blob.style.left = `${Math.random() * 100 - 15}vw`;
+      blob.style.top = `${Math.random() * 100 - 10}vh`;
+      blob.style.background = blobColors[Math.floor(Math.random() * blobColors.length)];
+      blob.style.setProperty('--duration', `${11 + Math.random() * 12}s`);
+      blob.style.setProperty('--move-x', `${-20 + Math.random() * 40}vw`);
+      blob.style.setProperty('--move-y', `${-12 + Math.random() * 30}vh`);
+      blob.style.animationDelay = `${Math.random() * -12}s`;
+      document.body.appendChild(blob);
+    }
+
+    const base = 'https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/';
+    const games = [
+      ['OvO','platformer action','ovo.html'],
+      ['Minecraft','building sandbox adventure','1.12.html'],
+      ['Geometry Dash','rhythm platformer music action','geometry-dash-lite.html'],
+      ['Paper.io','arcade io territory action','paper-io-2.htm'],
+      ['Cookie Clicker','idle cookies tapping strategy','cookie-clicker.htm'],
+      ['Level Devil','platformer difficult troll action','level-devil.html'],
+      ['Escape Road 2','driving racing car arcade','escape-road-2.html'],
+      ['Spacebar Clicker','idle clicking keyboard arcade','spacebar-clicker.html'],
+      ['Snow Rider 3D','snow racing winter driving','https://cdn.jsdelivr.net/gh/era6yera6y/00@main/index.html'],
+      ['2048','puzzle numbers strategy arcade','2048.html'],
+      ['Among Us','impostor social deduction multiplayer','among-us.html'],
+      ['Baldi’s Basics','school math horror adventure','baldis-basics.html'],
+      ['Backrooms','horror escape liminal maze','backrooms.html'],
+      ['BitLife','life simulator choices career','bitlife.html'],
+      ['Drive Mad','driving racing car obstacle','drive-mad.htm'],
+      ['Granny','hide find mystery horror','granny.html']
+    ].map(([name,tags,url]) => ({name,tags,url:url.startsWith('http') ? url : base + url}));
+
+    const $ = id => document.getElementById(id);
+    const grid = $('grid');
+    const escape = text => text.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+    grid.innerHTML = games.map((game, i) => `
+      <article data-search="${escape((game.name + ' ' + game.tags).toLowerCase())}">
+        <h3>${escape(game.name)}</h3>
+        <button data-url="${escape(game.url)}">Play</button>
+        <button class="download" data-download="${escape(game.url)}">Download</button>
+      </article>`).join('') + `
+      <article data-search="custom url github html game">
+        <h3>Custom URL Game</h3>
+        <input id="name" type="text" placeholder="Game name">
+        <input id="url" type="url" placeholder="https://raw.githubusercontent.com/...">
+        <button id="open">Open →</button>
+        <button id="downloadCustom">Download</button>
+      </article>`;
+
+    const openGame = async (url, name = 'Game') => {
+      const win = open('', '_blank');
+      if (!win) return alert('Popup blocked.');
+      win.document.write(`<p>Loading ${escape(name)}...</p>`);
+      try {
+        const html = await (await fetch(url)).text();
+        win.document.open();
+        win.document.write(html);
+        win.document.close();
+      } catch {
+        win.document.body.innerHTML = '<p>The game could not be loaded.</p>';
+      }
+    };
+
+    const db = new Promise((resolve, reject) => {
+      const request = indexedDB.open('FoproxGames', 1);
+      request.onupgradeneeded = () => request.result.createObjectStore('games', {keyPath: 'name'});
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const store = (mode, action) => db.then(database => new Promise((resolve, reject) => {
+      const transaction = database.transaction('games', mode);
+      const request = action(transaction.objectStore('games'));
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    }));
+    const downloads = document.createElement('section');
+    downloads.innerHTML = '<h2>Offline games</h2><div id="offline"></div>';
+    $('games').append(downloads);
+    const renderDownloads = async () => {
+      const saved = await store('readonly', games => games.getAll());
+      $('offline').innerHTML = saved.map(({name}) =>
+        `<article><b>${escape(name)}</b> <button data-run="${escape(name)}">Run</button> <button data-delete="${escape(name)}">Delete</button></article>`
+      ).join('') || '<p>No downloaded games.</p>';
+    };
+    renderDownloads();
+
+    grid.onclick = async event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const name = button.parentElement.querySelector('h3').textContent;
+      if (button.dataset.url) openGame(button.dataset.url, name);
+      if (button.dataset.download) {
+        if (!confirm('Download this game for offline use?')) return;
+        try {
+          const response = await fetch(button.dataset.download);
+          if (!response.ok) throw Error();
+          const html = await response.text();
+          await store('readwrite', games => games.put({name, html}));
+          renderDownloads();
+        } catch {
+          alert('The game could not be downloaded.');
+        }
+      }
+    };
+
+    $('offline').onclick = async event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const name = button.dataset.run || button.dataset.delete;
+      if (button.dataset.run) {
+        const saved = await store('readonly', games => games.get(name));
+        const win = open('', '_blank');
+        if (win && saved) win.document.write(saved.html);
+      } else {
+        await store('readwrite', games => games.delete(name));
+        renderDownloads();
+      }
+    };
+
+    const customURL = () => {
+      try {
+        const url = new URL($('url').value.trim());
+        if (url.protocol === 'https:' && url.hostname.includes('githubusercontent.com')) return url.href;
+      } catch {}
+      alert('Enter a secure raw GitHub URL.');
+    };
+
+    const customName = () => {
+      const name = $('name').value.trim();
+      if (name) return name;
+      alert('Enter a name for the custom game.');
+    };
+
+    $('open').onclick = () => {
+      const name = customName();
+      const url = customURL();
+      if (name && url) openGame(url, name);
+    };
+
+    $('downloadCustom').onclick = async () => {
+      const name = customName();
+      const url = customURL();
+      if (!name || !url || !confirm('Download this game for offline use?')) return;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw Error();
+        const html = await response.text();
+        await store('readwrite', games => games.put({name, html}));
+        renderDownloads();
+      } catch {
+        alert('The game could not be downloaded.');
+      }
+    };
+
+    $('search').oninput = ({target}) => {
+      const query = target.value.toLowerCase();
+      let shown = 0;
+      grid.querySelectorAll('article').forEach(card => {
+        card.hidden = !card.dataset.search.includes(query);
+        shown += !card.hidden;
+      });
+      $('none').hidden = shown > 0;
+    };
+
+    $('full').onclick = () => document.fullscreenElement
+      ? document.exitFullscreen()
+      : document.documentElement.requestFullscreen?.();
+  </script>
+</body>
+</html>
