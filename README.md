@@ -20,12 +20,12 @@ nah, hard pass\
 MORE GAMES WHEN?\
 as soon as I find them, okay\
 WHY DOES IT LOOK LIKE AN AI DID THIS.\
-
 i use AI for css, i HATE css3 with my life. and for some reason they optimized it for me (?????) i did not ask for that.\
 THAT WAS A RHETORICAL QUESTION\
 shut up, whoever you are.\
 UPDATE WHEN?\
-everyday, not if I forget though.\
+everyday, not if I forget though.
+<hr>
 that concludes our Q and A's!
 
 
