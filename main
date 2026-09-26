@@ -1,68 +1,281 @@
-<!doctype html>
-<html lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<style>*{box-sizing:border-box}:root{--page-bg:#26003f;--text:#fff;--control-bg:#fff;--control-text:#5b1290;--card-bg:#ffffff18;--panel-bg:#351052;--border:#ffffff35;--shadow:#24003b45;--accent:#ff3cac;--accent-soft:#ff3cac55;--accent-blue:#38bdf8;--accent-purple:#a855f7;--surface-gradient:linear-gradient(135deg, #ffffff20, #ffffff08)}body.light{--accent-soft:#ff3cac35;--surface-gradient:linear-gradient(135deg, #ffffff, #f2e8ff);--page-bg:#f5efff;--text:#251334;--control-bg:#fff;--control-text:#5b1290;--card-bg:#ffffffb8;--panel-bg:#ffffff;--border:#5b129030;--shadow:#5b129020}body{margin:0;min-height:100vh;padding:24px;position:relative;overflow-x:hidden;background:var(--page-bg);color:var(--text);font-family:system-ui,sans-serif;transition:background .25s,color .25s;background-image:radial-gradient(circle at 12% 10%,#ff3cac18,transparent 28%),radial-gradient(circle at 88% 20%,#38bdf818,transparent 26%),radial-gradient(circle at 50% 100%,#a855f718,transparent 34%)}body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(120deg,transparent 20%,#ffffff08 50%,transparent 80%);background-size:220% 100%;animation:shimmer 14s linear infinite}@keyframes shimmer{from{background-position:220% 0}to{background-position:-220% 0}}body.no-motion *,body.no-motion ::after,body.no-motion ::before{animation-duration:0s!important;transition:none!important}.lava-blob{position:fixed;z-index:0;border-radius:50%;filter:blur(22px);opacity:.62;pointer-events:none;animation:lavaFloat var(--duration) ease-in-out infinite alternate}header,main{position:relative;z-index:1}header{z-index:2}@keyframes lavaFloat{0%{transform:translate(0,0) scale(1)}50%{transform:translate(var(--move-x),var(--move-y)) scale(1.22)}100%{transform:translate(calc(var(--move-x) * -.7),calc(var(--move-y) * 1.4)) scale(.86)}}header{display:flex;gap:12px;max-width:900px;margin:0 auto 24px}button,input,select{border:1px solid transparent;border-radius:10px;padding:10px 12px;font:inherit;transition:transform .2s,box-shadow .2s,border-color .2s,background .2s}input,select{background:var(--control-bg);color:var(--text);box-shadow:0 0 0 3px transparent,0 5px 18px var(--shadow)}input:focus,select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),0 5px 18px var(--shadow)}input{min-width:0;flex:1}button{background:linear-gradient(135deg,var(--control-bg),#f4e7ff);color:var(--control-text);cursor:pointer;font-weight:700;box-shadow:0 5px 16px var(--shadow)}button:hover{background:linear-gradient(135deg,#fff,#ead8ff);transform:translateY(-2px);box-shadow:0 8px 22px var(--accent-soft)}button:active{transform:translateY(0)}button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}main{max-width:900px;margin:auto}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding:12px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(120deg,#ff3cac12,#38bdf812,#a855f712);box-shadow:0 8px 24px var(--shadow)}.filters button,.filters select{flex:1 1 150px}.favorite{float:right;padding:4px 8px;background:0 0;color:var(--accent)}.favorite.active{background:var(--accent);color:#fff}.category{opacity:.78;font-size:.85rem;text-transform:capitalize}#viewer[hidden]{display:none}#viewer{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;background:var(--page-bg)}#viewerBar{display:flex;gap:8px;align-items:center;padding:10px;background:var(--panel-bg)}#viewerTitle{flex:1;font-weight:700}#gameFrame{flex:1;width:100%;border:0;background:#fff}.settings{position:relative}#settingsPanel{position:absolute;right:0;top:calc(100% + 8px);z-index:5;width:230px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--panel-bg);box-shadow:0 4px 14px var(--shadow)}#settingsPanel[hidden]{display:none}#settingsPanel label{display:block;margin:10px 0}#settingsPanel select{width:100%;margin-top:5px}.check{display:flex!important;align-items:center;gap:8px}.check input{flex:0}#grid,#offline{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}article{position:relative;overflow:hidden;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--surface-gradient);box-shadow:0 8px 24px var(--shadow),inset 0 1px #ffffff18;backdrop-filter:blur(8px);transition:transform .25s,border-color .25s,box-shadow .25s}article::before{content:"";position:absolute;width:90px;height:90px;top:-45px;right:-25px;border-radius:50%;background:var(--accent);opacity:.18;filter:blur(10px);pointer-events:none}article:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 14px 30px var(--accent-soft),inset 0 1px #ffffff30}body.compact{padding:12px}body.compact #grid,body.compact #offline{gap:8px}body.compact article{padding:10px}h3{position:relative;margin:0 0 14px;color:var(--text);text-shadow:0 2px 12px var(--accent-soft)}article button{margin:3px 2px 0 0}article button[data-url]{background:linear-gradient(135deg,var(--accent),var(--accent-purple));color:#fff}.category{color:var(--accent-blue);font-weight:700;letter-spacing:.03em}article input{width:100%;margin-bottom:8px}section{margin-top:28px}h2{margin-bottom:12px}@media (max-width:520px){body{padding:16px}header{flex-direction:column}}</style>
-</head>
-<body>
-<header>
-<button id=full>⛶ Fullscreen</button>
-<input id=search type=search placeholder="Search games...">
-<div class=settings>
-<button id=settingsToggle aria-expanded=false>⚙ Settings</button>
-<div id=settingsPanel hidden>
-<strong>Customize</strong>
-<label>Theme
-<select id=theme>
-<option value=system>System</option>
-<option value=dark>Dark</option>
-<option value=light>Light</option>
-</select>
-</label>
-<label>Accent color
-<select id=accent>
-<option value=#ff3cac>Pink</option>
-<option value=#38bdf8>Blue</option>
-<option value=#a3e635>Lime</option>
-<option value=#facc15>Gold</option>
-</select>
-</label>
-<label class=check><input id=motion type=checkbox> Animated background</label>
-<label class=check><input id=compact type=checkbox> Compact cards</label>
-</div>
-</div>
-</header>
-<main id=games>
-<div class=filters>
-<select id=category aria-label="Filter by category">
-<option value=all>All categories</option>
-<option value=action>Action</option>
-<option value=arcade>Arcade</option>
-<option value=driving>Driving</option>
-<option value=horror>Horror</option>
-<option value=idle>Idle</option>
-<option value=minecraft>Minecraft</option>
-<option value=platformer>Platformer</option>
-<option value=puzzle>Puzzle</option>
-<option value=strategy>Strategy</option>
-</select>
-<select id=sort aria-label="Sort games">
-<option value=name>Sort: A–Z</option>
-<option value=recent>Sort: Recently played</option>
-<option value=favorites>Sort: Favorites first</option>
-</select>
-<button id=random>🎲 Random game</button>
-<button id=downloadAll>⬇ Download all</button>
-</div>
-<p id=catalogStatus aria-live=polite>Loading the complete game catalog…</p>
-<div id=grid></div>
-<p id=none hidden>No games found.</p>
-</main>
-<div id=viewer hidden>
-<div id=viewerBar><span id=viewerTitle></span><button id=viewerNewTab>↗ Open</button><button id=viewerReload>↻ Reload</button><button id=viewerFull>⛶ Fullscreen</button><button id=viewerClose>✕ Close</button></div>
-<iframe id=gameFrame title="Game viewer" allowfullscreen></iframe>
-</div>
-<script>const blobColors=["#a238ff","#ff3cac","#7024ff","#e83cff","#c026d3"],blobCount=3+Math.floor(5*Math.random());for(let e=0;e<blobCount;e++){const e=document.createElement("div"),t=22+42*Math.random();e.className="lava-blob",e.style.width=`${t}vw`,e.style.height=`${t}vw`,e.style.left=100*Math.random()-15+"vw",e.style.top=100*Math.random()-10+"vh",e.style.background=blobColors[Math.floor(Math.random()*blobColors.length)],e.style.setProperty("--duration",11+12*Math.random()+"s"),e.style.setProperty("--move-x",40*Math.random()-20+"vw"),e.style.setProperty("--move-y",30*Math.random()-12+"vh"),e.style.animationDelay=-12*Math.random()+"s",document.body.appendChild(e)}const base="https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/",seedGames=[["OvO","platformer action","ovo.html"],["Minecraft","building sandbox adventure","1.12.html"],["Geometry Dash","rhythm platformer music action","geometry-dash-lite.html"],["Paper.io","arcade io territory action","paper-io-2.htm"],["Cookie Clicker","idle cookies tapping strategy","cookie-clicker.htm"],["Level Devil","platformer difficult troll action","level-devil.html"],["Escape Road 2","driving racing car arcade","escape-road-2.html"],["Spacebar Clicker","idle clicking keyboard arcade","spacebar-clicker.html"],["Snow Rider 3D","snow racing winter driving","https://cdn.jsdelivr.net/gh/era6yera6y/00@main/index.html"],["2048","puzzle numbers strategy arcade","2048.html"],["Among Us","impostor social deduction multiplayer","among-us.html"],["Baldi’s Basics","school math horror adventure","baldis-basics.html"],["Backrooms","horror escape liminal maze","backrooms.html"],["BitLife","life simulator choices career","bitlife.html"],["Drive Mad","driving racing car obstacle","drive-mad.htm"],["Granny","hide find mystery horror","granny.html"]].map((([e,t,a])=>({name:e,tags:t,url:a.startsWith("http")?a:base+a})));let games=seedGames;const loadAllGames=async()=>{const e=[],t=async a=>{const o=await fetch(`https://api.github.com/repos/CoolDude2349/Offline-HTML-Games-Pack/contents/${a}?ref=master&per_page=1000`,{headers:{Accept:"application/vnd.github+json"}});if(!o.ok)throw new Error(`GitHub returned HTTP ${o.status}`);const r=await o.json();if(!Array.isArray(r))throw new Error("GitHub returned an invalid file list");await Promise.all(r.map((async a=>{if("dir"===a.type)return t(a.path);"file"===a.type&&/\.html?$/i.test(a.name)&&e.push(a)})))};try{await t("offline");const a=e.map((e=>{const t=e.path.replace(/^offline\//,"");return{name:t.replace(/\.html?$/i,"").replace(/[\\/_-]+/g," ").replace(/\b\w/g,(e=>e.toUpperCase())),tags:t.toLowerCase().replace(/\.html?$/i,"").replace(/[\\/_-]+/g," "),url:e.download_url}})),o=new Set(seedGames.map((e=>e.url)));games=[...seedGames,...a.filter((e=>!o.has(e.url)))],renderGrid(),$("catalogStatus").textContent=`${a.length} games loaded from GitHub.`,console.info(`Loaded ${a.length} games from GitHub.`)}catch(e){console.warn("Could not load the complete GitHub game list:",e),$("catalogStatus").textContent=`Could not load the GitHub catalog: ${e.message}`,renderGrid()}},db=new Promise(((e,t)=>{try{if(!window.indexedDB)throw new Error("IndexedDB unavailable");const a=indexedDB.open("FoproxGames",3);a.onupgradeneeded=()=>{const e=a.result;e.objectStoreNames.contains("games")||e.createObjectStore("games",{keyPath:"name"}),e.objectStoreNames.contains("preferences")||e.createObjectStore("preferences",{keyPath:"key"}),e.objectStoreNames.contains("activity")||e.createObjectStore("activity",{keyPath:"name"})},a.onsuccess=()=>e(a.result),a.onerror=()=>t(a.error||new Error("IndexedDB failed"))}catch(e){t(e)}})),$=e=>document.getElementById(e),theme=$("theme"),accent=$("accent"),motion=$("motion"),compact=$("compact"),systemTheme=matchMedia("(prefers-color-scheme: light)"),applyPreferences=()=>{const e=theme.value;document.body.classList.toggle("light","light"===e||"system"===e&&systemTheme.matches),document.body.classList.toggle("no-motion",!motion.checked),document.body.classList.toggle("compact",compact.checked),document.documentElement.style.setProperty("--accent",accent.value),db.then((e=>new Promise(((t,a)=>{const o=e.transaction("preferences","readwrite").objectStore("preferences").put({key:"settings",theme:theme.value,accent:accent.value,motion:motion.checked,compact:compact.checked});o.onsuccess=t,o.onerror=()=>a(o.error)})))).catch((()=>{}))};theme.value="system",accent.value="#ff3cac",motion.checked=!0,compact.checked=!1,[theme,accent,motion,compact].forEach((e=>e.onchange=applyPreferences)),systemTheme.onchange=applyPreferences,db.then((e=>new Promise(((t,a)=>{const o=e.transaction("preferences","readonly").objectStore("preferences").get("settings");o.onsuccess=()=>{const e=o.result;e&&(theme.value=e.theme||"system",accent.value=e.accent||"#ff3cac",motion.checked=!1!==e.motion,compact.checked=!0===e.compact),applyPreferences(),t()},o.onerror=()=>a(o.error)})))).catch((()=>applyPreferences())),$("settingsToggle").onclick=()=>{const e=$("settingsPanel");e.hidden=!e.hidden,$("settingsToggle").setAttribute("aria-expanded",String(!e.hidden))},document.addEventListener("click",(e=>{e.target.closest(".settings")||($("settingsPanel").hidden=!0,$("settingsToggle").setAttribute("aria-expanded","false"))}));const grid=$("grid"),escape=e=>e.replace(/[&<>"']/g,(e=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[e]))),categories=["action","arcade","driving","horror","idle","minecraft","platformer","puzzle","strategy"],categoryKeywords={driving:["car","drive","driving","racing","race","rider","road","traffic","drift"," moto","bike"],horror:["horror","granny","backroom","backrooms","scary","evil","escape","baldi","zombie"],idle:["clicker","cookie","idle","incremental","tycoon","mine","factory"],minecraft:["minecraft"],puzzle:["2048","puzzle","sudoku","mahjong","wordle","match","brain","block"],platformer:["platform","ovo","geometry","super mario","mario","sonic","flappy"],strategy:["strategy","chess","tower defense","defense","war","simulator","sandbox"],arcade:["arcade","io","snake","tetris","pong","flappy","runner","dash"],action:["action","shooter","fight","battle","combat","fire","gun","ninja"]},categoryOf=(e,t="")=>{const a=e.toLowerCase(),o=t.toLowerCase().trim(),r=`${o} ${a}`,n=/\d/.test(o)&&!/[a-z]/i.test(o),c=categoryKeywords.puzzle.some((e=>r.includes(e)));if(n&&!c)return"minecraft";const s=a.split(/\s+/).find((e=>categories.includes(e)));return s||(categories.find((e=>categoryKeywords[e].some((e=>a.includes(e.trim())))))||"other")};let activity={};const activityStore=(e,t)=>db.then((a=>new Promise(((o,r)=>{const n=a.transaction("activity",e),c=t(n.objectStore("activity"));c.onsuccess=()=>o(c.result),c.onerror=()=>r(c.error)})))),saveActivity=(e,t)=>(activity[e]={...activity[e],...t},activityStore("readwrite",(t=>t.put({name:e,...activity[e]})))),renderGrid=()=>{const e=$("search").value.toLowerCase(),t=$("category").value,a=[...games].sort(((e,t)=>"recent"===$("sort").value?(activity[t.name]?.lastPlayed||0)-(activity[e.name]?.lastPlayed||0):"favorites"===$("sort").value&&Number(activity[t.name]?.favorite)-Number(activity[e.name]?.favorite)||e.name.localeCompare(t.name))).filter((a=>("all"===t||categoryOf(a.tags,a.name)===t)&&(a.name+" "+a.tags).toLowerCase().includes(e)));grid.innerHTML=a.map((e=>`\n        <article data-search="${escape((e.name+" "+e.tags).toLowerCase())}">\n          <button class="favorite ${activity[e.name]?.favorite?"active":""}" data-favorite="${escape(e.name)}" aria-label="Favorite ${escape(e.name)}">★</button>\n          <h3>${escape(e.name)}</h3>\n          <div class="category">${escape(categoryOf(e.tags,e.name))}</div>\n          <button data-url="${escape(e.url)}" data-name="${escape(e.name)}">Play</button>\n          <button class="download" data-download="${escape(e.url)}">Download</button>\n        </article>`)).join("")+'\n        <article data-search="custom url github html game">\n          <h3>Custom URL Game</h3>\n          <input id="name" type="text" placeholder="Game name">\n          <input id="url" type="url" placeholder="https://raw.githubusercontent.com/...">\n          <button id="open">Open →</button>\n          <button id="downloadCustom">Download</button>\n        </article>',$("none").hidden=a.length>0};grid.innerHTML=games.map(((e,t)=>`\n      <article data-search="${escape((e.name+" "+e.tags).toLowerCase())}">\n        <h3>${escape(e.name)}</h3>\n        <button data-url="${escape(e.url)}">Play</button>\n        <button class="download" data-download="${escape(e.url)}">Download</button>\n      </article>`)).join("")+'\n      <article data-search="custom url github html game">\n        <h3>Custom URL Game</h3>\n        <input id="name" type="text" placeholder="Game name">\n        <input id="url" type="url" placeholder="https://raw.githubusercontent.com/...">\n        <button id="open">Open →</button>\n        <button id="downloadCustom">Download</button>\n      </article>';const openGame=async(e,t="Game")=>{const a=window.open("about:blank","_blank");if(a){saveActivity(t,{lastPlayed:Date.now()}).catch((()=>{})),a.document.write('<!doctype html><title>Loading…</title><p style="font:16px system-ui;padding:20px">Loading game…</p>');try{const t=await fetch(e,{cache:"no-store"});if(!t.ok)throw new Error(`HTTP ${t.status}`);const o=await t.text(),r=`<base href="${new URL("./",e).href.replace(/&/g,"&amp;").replace(/"/g,"&quot;")}">`;let n=o;n=/<html\b/i.test(n)?/<head\b[^>]*>/i.test(n)?n.replace(/<head\b[^>]*>/i,(e=>`${e}${r}`)):n.replace(/<html\b[^>]*>/i,(e=>`${e}<head>${r}</head>`)):`<!doctype html><html><head><meta charset="utf-8">${r}</head><body>${n}</body></html>`,a.document.open(),a.document.write(n),a.document.close()}catch(e){a.document.open(),a.document.write(`<p style="font:16px system-ui;padding:20px">Could not load ${escape(t)}.<br><small>${escape(e.message)}</small></p>`),a.document.close()}}else alert("Allow pop-ups, then click Play again.")},openSavedGame=(e,t)=>{const a=window.open("about:blank","_blank");if(!a)return void alert("Please allow pop-ups for this site, then try again.");const o=`<base href="${(e.base?new URL(".",e.base).href:location.href).replace(/"/g,"&quot;")}">`,r=/<head\b[^>]*>/i.test(e.html)?e.html.replace(/<head\b[^>]*>/i,(e=>`${e}${o}`)):`<!doctype html><html><head>${o}</head><body>${e.html}</body></html>`;a.document.open(),a.document.write(r),a.document.close(),a.document.title=t};loadAllGames(),db.then((()=>activityStore("readonly",(e=>e.getAll())))).then((e=>{activity=Object.fromEntries(e.map((e=>[e.name,e]))),renderGrid()})).catch((()=>renderGrid())),$("viewerClose").onclick=()=>{$("gameFrame").src="about:blank",$("viewer").hidden=!0},$("viewerReload").onclick=()=>{$("gameFrame").src=$("gameFrame").dataset.url},$("viewerNewTab").onclick=()=>{const e=$("gameFrame").dataset.url;e&&window.open(e,"_blank","noopener")},$("viewerFull").onclick=()=>$("gameFrame").requestFullscreen?.();const store=(e,t)=>db.then((a=>new Promise(((o,r)=>{const n=a.transaction("games",e),c=t(n.objectStore("games"));c.onsuccess=()=>o(c.result),c.onerror=()=>r(c.error)})))),downloads=document.createElement("section");downloads.innerHTML='<h2>Offline games</h2><div id="offline"></div>',$("games").append(downloads);const renderDownloads=async()=>{try{const e=await store("readonly",(e=>e.getAll()));$("offline").innerHTML=e.map((({name:e})=>`<article><b>${escape(e)}</b> <button data-run="${escape(e)}">Run</button> <button data-delete="${escape(e)}">Delete</button></article>`)).join("")||"<p>No downloaded games.</p>"}catch{$("offline").innerHTML="<p>Offline storage is unavailable.</p>"}};renderDownloads(),grid.onclick=async e=>{const t=e.target.closest("button");if(!t)return;if("open"===t.id){const e=customName(),t=customURL();return void(e&&t&&openGame(t,e))}if("downloadCustom"===t.id){const e=customName(),t=customURL();if(!e||!t||!confirm("Download this game for offline use?"))return;try{const a=await fetch(t);if(!a.ok)throw Error();const o=await a.text();await store("readwrite",(a=>a.put({name:e,html:o,base:t}))),renderDownloads()}catch{alert("The game could not be downloaded.")}return}const a=t.dataset.name||t.parentElement.querySelector("h3").textContent;if(t.dataset.favorite)return await saveActivity(a,{favorite:!activity[a]?.favorite}),void renderGrid();if(t.dataset.url&&openGame(t.dataset.url,a),t.dataset.download){if(!confirm("Download this game for offline use?"))return;try{const e=await fetch(t.dataset.download);if(!e.ok)throw Error();const o=await e.text();await store("readwrite",(e=>e.put({name:a,html:o,base:t.dataset.download}))),renderDownloads()}catch{alert("The game could not be downloaded.")}}},$("offline").onclick=async e=>{const t=e.target.closest("button");if(!t)return;const a=t.dataset.run||t.dataset.delete;if(t.dataset.run)try{const e=await store("readonly",(e=>e.get(a)));e&&openSavedGame(e,a)}catch{alert("The downloaded game could not be opened.")}else await store("readwrite",(e=>e.delete(a))),renderDownloads()};const customURL=()=>{try{const e=new URL($("url").value.trim());if("https:"===e.protocol&&e.hostname.includes("githubusercontent.com"))return e.href}catch{}alert("Enter a secure raw GitHub URL.")},customName=()=>{const e=$("name").value.trim();if(e)return e;alert("Enter a name for the custom game.")};$("downloadAll").onclick=async()=>{if(!games.length||!confirm(`Download all ${games.length} games for offline use?`))return;const e=$("downloadAll"),t=e.textContent;e.disabled=!0;let a=0,o=0;for(const r of games)try{const e=await fetch(r.url);if(!e.ok)throw Error();const t=await e.text();await store("readwrite",e=>e.put({name:r.name,html:t,base:r.url})),a++,e.textContent=`Downloading ${a}/${games.length}…`}catch{o++}e.disabled=!1,e.textContent=t,renderDownloads(),alert(`${a} game${1===a?"":"s"} downloaded${o?` (${o} failed)`:""}.`)},$("search").oninput=renderGrid,$("category").onchange=renderGrid,$("sort").onchange=renderGrid,$("random").onclick=()=>{const e=[...grid.querySelectorAll("article[data-search]")].filter((e=>e.querySelector("[data-url]"))),t=e[Math.floor(Math.random()*e.length)];t&&t.querySelector("[data-url]").click()},$("full").onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.()</script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offline HTML Games</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/ethanchester/foprox/refs/heads/main/canvaas.png" />
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, sans-serif;
+        color: #182235;
+        background: #f2f6fc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 4rem 1.25rem;
+        line-height: 1.6;
+        background: radial-gradient(circle at top left, #e1ebff, transparent 38rem), #f2f6fc;
+      }
+
+      main {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: clamp(1.5rem, 5vw, 3rem);
+        border: 1px solid #e0e7f1;
+        border-radius: 1.25rem;
+        background: #fff;
+        box-shadow: 0 1.25rem 3rem rgb(32 55 90 / 10%);
+      }
+
+      h1 {
+        margin: 0 0 0.5rem;
+        color: #173a71;
+        font-size: clamp(2rem, 6vw, 2.75rem);
+        line-height: 1.15;
+        letter-spacing: -0.04em;
+      }
+
+      main > p:first-of-type {
+        margin: 0 0 1.75rem;
+        color: #5e6b7e;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.65rem;
+        align-items: end;
+      }
+
+      label {
+        grid-column: 1 / -1;
+        margin-bottom: -0.45rem;
+        font-size: 0.9rem;
+        font-weight: 650;
+      }
+
+      input,
+      button {
+        min-height: 2.9rem;
+        border-radius: 0.65rem;
+        font: inherit;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.65rem 0.85rem;
+        border: 1px solid #cbd5e3;
+        background: #fff;
+        color: inherit;
+      }
+
+      input:focus-visible {
+        border-color: #3975d5;
+        outline: 3px solid rgb(57 117 213 / 20%);
+      }
+
+      button {
+        padding: 0.65rem 1rem;
+        border: 0;
+        background: #2864bd;
+        color: #fff;
+        font-weight: 650;
+        cursor: pointer;
+        transition: background-color 150ms ease, transform 150ms ease;
+      }
+
+      button:hover {
+        background: #1c4f9c;
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+
+      button:focus-visible {
+        outline: 3px solid rgb(57 117 213 / 35%);
+        outline-offset: 2px;
+      }
+
+      #status {
+        min-height: 3rem;
+        margin: 1.25rem 0 0;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.65rem;
+        background: #f1f5fb;
+        color: #4c5d75;
+        font-size: 0.95rem;
+      }
+
+      li {
+        margin: 0.35rem 0;
+      }
+
+      @media (max-width: 34rem) {
+        body {
+          padding: 1.5rem 0.85rem;
+        }
+
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        label {
+          grid-column: auto;
+          margin-bottom: -0.45rem;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Offline HTML Games</h1>
+      <p>Choose a game to load it. Only one game is kept open at a time.</p>
+      <form id="gameForm">
+        <label for="gameName">Game name:</label>
+        <input id="gameName" type="search" list="gameOptions" autocomplete="off" placeholder="Search for a game" />
+        <datalist id="gameOptions"></datalist>
+        <button type="submit">Load game</button>
+      </form>
+      <p id="status" role="status">Loading game list…</p>
+    </main>
+
+    <script>
+      const REPOSITORY = "CoolDude2349/Offline-HTML-Games-Pack";
+      const BRANCH = "master";
+      const API_URL = `https://api.github.com/repos/${REPOSITORY}/git/trees/${BRANCH}?recursive=1`;
+      const RAW_BASE = `https://raw.githubusercontent.com/${REPOSITORY}/${BRANCH}/`;
+
+      const gameOptions = document.getElementById("gameOptions");
+      const gameName = document.getElementById("gameName");
+      const gameForm = document.getElementById("gameForm");
+      const status = document.getElementById("status");
+      let games = [];
+      let gameWindow = null;
+
+      function populateGameOptions() {
+        const fragment = document.createDocumentFragment();
+        for (const game of games) {
+          const option = document.createElement("option");
+          option.value = game.name;
+          fragment.append(option);
+        }
+        gameOptions.replaceChildren(fragment);
+        status.textContent = `${games.length} games available. Search by name, then choose Load game.`;
+      }
+
+      async function loadGame(game) {
+        if (gameWindow && !gameWindow.closed) gameWindow.close();
+        gameWindow = window.open("", "_blank");
+        if (!gameWindow) {
+          status.textContent = "The new tab was blocked. Allow pop-ups to open games.";
+          return;
+        }
+
+        status.textContent = `Loading ${game.name}…`;
+        gameWindow.document.title = "School Work";
+
+        const url = RAW_BASE + game.path.split("/").map(encodeURIComponent).join("/");
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+
+          let html = await response.text();
+          const baseTag = `<base href="${url}">`;
+          if (/<base\b[^>]*>/i.test(html)) {
+            html = html.replace(/<base\b[^>]*>/i, baseTag);
+          } else if (/<head\b[^>]*>/i.test(html)) {
+            html = html.replace(/<head\b[^>]*>/i, (head) => `${head}${baseTag}`);
+          } else {
+            html = `${baseTag}${html}`;
+          }
+
+          if (/<title\b[^>]*>[\s\S]*?<\/title\s*>/i.test(html)) {
+            html = html.replace(/<title\b[^>]*>[\s\S]*?<\/title\s*>/i, "<title>School Work</title>");
+          } else {
+            html = html.replace(/<head\b[^>]*>/i, (head) => `${head}<title>School Work</title>`);
+          }
+
+          const faviconUrl = "https://raw.githubusercontent.com/ethanchester/foprox/refs/heads/main/canvaas.png";
+          html = html.replace(/<link\b[^>]*>/gi, (tag) => {
+            const rel = tag.match(/\brel\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
+            return rel && /\bicon\b/i.test(rel[1] || rel[2] || rel[3]) ? "" : tag;
+          });
+          const faviconTag = `<link rel="icon" href="${faviconUrl}">`;
+          if (/<head\b[^>]*>/i.test(html)) {
+            html = html.replace(/<head\b[^>]*>/i, (head) => `${head}${faviconTag}`);
+          } else {
+            html = `${faviconTag}${html}`;
+          }
+
+          gameWindow.document.open();
+          gameWindow.document.write(html);
+          gameWindow.document.close();
+          gameWindow.document.title = "Wake Id Portal";
+
+          const gameHead = gameWindow.document.head || gameWindow.document.createElement("head");
+          for (const icon of gameHead.querySelectorAll('link[rel~="icon"]')) icon.remove();
+          const gameFavicon = gameWindow.document.createElement("link");
+          gameFavicon.rel = "icon";
+          gameFavicon.type = "image/png";
+          gameFavicon.href = "https://raw.githubusercontent.com/ethanchester/foprox/refs/heads/main/canvaas.png";
+          gameHead.append(gameFavicon);
+          status.textContent = `Now playing: ${game.name} (new tab)`;
+        } catch (error) {
+          if (!gameWindow.closed) {
+            gameWindow.document.body.textContent = `Could not load ${game.name}: ${error.message}`;
+          }
+          status.textContent = `Could not load ${game.name}: ${error.message}`;
+        }
+      }
+
+      gameForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const requested = gameName.value.trim().toLowerCase();
+        const game = games.find((item) => item.name.toLowerCase() === requested);
+        if (!game) {
+          status.textContent = "Choose a game from the suggestions or enter its exact name.";
+          return;
+        }
+        loadGame(game);
+      });
+
+      fetch(API_URL, { headers: { Accept: "application/vnd.github+json" } })
+        .then((response) => {
+          if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+          return response.json();
+        })
+        .then((tree) => {
+          if (tree.truncated) throw new Error("GitHub returned an incomplete file list.");
+          games = tree.tree
+            .filter((entry) => entry.type === "blob" && /^offline\/.*\.html?$/i.test(entry.path))
+            .map((entry) => ({
+              path: entry.path,
+              name: entry.path.slice("offline/".length).replace(/\.html?$/i, "").replace(/[\/_-]+/g, " ")
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name));
+
+          if (!games.length) {
+            status.textContent = "No HTML games were found in the offline folder.";
+            return;
+          }
+          populateGameOptions();
+        })
+        .catch((error) => {
+          status.textContent = `Could not load the game list: ${error.message}. Check your connection or GitHub availability.`;
+        });
+    </script>
+  </body>
 </html>
